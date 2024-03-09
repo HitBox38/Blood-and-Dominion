@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmsym24flsyge"]
+
+[ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
+[ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_1n2f3")]
+
+[node name="Camera2D" parent="." instance=ExtResource("2_xkvao")]
+position = Vector2(592, 317)
