@@ -2,9 +2,9 @@ extends Camera2D
 
 var dragging = false
 var last_mouse_pos = Vector2.ZERO
-var camera_move_limit = Vector2(900, 500)
+@export var camera_move_limit = Vector2(900, 500)
 
-var zoom_speed = 0.1
+@export var zoom_speed = 0.1
 
 func _input(event):
 	if event is InputEventMouseButton:
