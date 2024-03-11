@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://gt6wgoaneag7"]
+
+[ext_resource type="Script" path="res://Scripts/money_indicator.gd" id="1_rr1wl"]
+
+[node name="Label" type="Label"]
+anchors_preset = -1
+offset_left = 965.0
+offset_top = 572.0
+offset_right = 1139.0
+offset_bottom = 617.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("1_rr1wl")

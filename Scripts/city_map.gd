@@ -1,23 +1,23 @@
 extends TileMap
 
-var prevTileChanged = Vector2i.MAX 
-
-var need_cell_selection = true 
-var infected_cell_tiles = {}
-
-var infection_time = 0
 @export var infection_max_time = 10.0
 @export var infection_spread_min = 0.02
 @export var infection_spread_max = 0.15
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	randomize()
-	pass
+@export var infection_suspicion_chance = 0.35
+@export var infection_suspicion_amount = 1.0
+
+signal cell_suspicious(amount:float)
+
+var prevTileChanged = Vector2i.MAX 
+var need_cell_selection = true 
+var infected_cell_tiles = {}
+var infection_time = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	spread_infection(delta)
+	if TimeCycle.is_day:
+		spread_infection(delta)
 	# changing selection cursor
 	if need_cell_selection:
 		change_selected(Vector2i(2, 0))
@@ -35,7 +35,6 @@ func change_selected(selection_atlas):
 func spread_infection(delta):
 	infection_time += delta
 	
-	
 	if infection_time > infection_max_time:
 		infection_time = 0
 		for i in range(infected_cell_tiles.size()):
@@ -49,6 +48,9 @@ func spread_infection(delta):
 					var cell = surr_cells[l]
 					if get_cell_source_id(1, cell) == -1:
 						continue
+					randomize()
+					if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
+						emit_signal("cell_suspicious", infection_suspicion_amount)
 					var infection_spreading = randf_range(infection_spread_min, infection_spread_max)
 					if !infected_cell_tiles.has(cell):
 						infected_cell_tiles[cell] = infection_spreading
@@ -70,6 +72,8 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				var tile = local_to_map(get_local_mouse_position())
+				if get_cell_atlas_coords(1, tile) != Vector2i(2, 0):
+					return
 				set_cell(2, tile, 2, Vector2i.ZERO)
 				if(infected_cell_tiles.is_empty()):
 					infected_cell_tiles = { tile : 1 }

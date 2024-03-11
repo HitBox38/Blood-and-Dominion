@@ -8,15 +8,16 @@ var last_mouse_pos = Vector2.ZERO
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			dragging = event.pressed
-			last_mouse_pos = get_local_mouse_position()
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom -= Vector2(zoom_speed, zoom_speed)
-			zoom = Vector2(max(zoom.x, 0.5), max(zoom.y, 0.5))
-		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom += Vector2(zoom_speed, zoom_speed)
-			zoom = Vector2(min(zoom.x, 3), min(zoom.y, 3))
+		match event.button_index:
+			MOUSE_BUTTON_RIGHT:
+				dragging = event.pressed
+				last_mouse_pos = get_local_mouse_position()
+			MOUSE_BUTTON_WHEEL_DOWN:
+				zoom -= Vector2(zoom_speed, zoom_speed)
+				zoom = Vector2(max(zoom.x, 0.5), max(zoom.y, 0.5))
+			MOUSE_BUTTON_WHEEL_UP:
+				zoom += Vector2(zoom_speed, zoom_speed)
+				zoom = Vector2(min(zoom.x, 3), min(zoom.y, 3))
 	elif event is InputEventMouseMotion:
 		if dragging:
 			var current_mouse_pos = get_local_mouse_position()

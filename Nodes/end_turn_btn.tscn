@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ba1tplpfjqyl8"]
+
+[node name="Button" type="Button"]
+offset_left = 1072.0
+offset_top = 598.0
+offset_right = 1150.0
+offset_bottom = 629.0
+action_mode = 0
+text = "End Turn"

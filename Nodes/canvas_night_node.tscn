@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmymf2wru6hfv"]
 
-[ext_resource type="Script" path="res://Nodes/NightCycle.gd" id="1_ynbng"]
+[ext_resource type="Script" path="res://Scripts/night_cycle.gd" id="1_e3ura"]
 
 [node name="CanvasModulate" type="CanvasModulate"]
-script = ExtResource("1_ynbng")
+script = ExtResource("1_e3ura")
