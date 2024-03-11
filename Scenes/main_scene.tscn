@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmsym24flsyge"]
+[gd_scene load_steps=8 format=3 uid="uid://n8rakfda73kw"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
-[ext_resource type="PackedScene" uid="uid://bmymf2wru6hfv" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
-[ext_resource type="PackedScene" uid="uid://ba1tplpfjqyl8" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
+[ext_resource type="PackedScene" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
+[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
 [ext_resource type="Script" path="res://Scripts/ui_control.gd" id="4_mv4kg"]
-[ext_resource type="PackedScene" uid="uid://btbimtupjvmuh" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
-[ext_resource type="PackedScene" uid="uid://gt6wgoaneag7" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
+[ext_resource type="PackedScene" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
+[ext_resource type="PackedScene" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,15 +17,10 @@ infection_suspicion_amount = 0.1
 [node name="Camera2D" parent="." instance=ExtResource("2_xkvao")]
 position = Vector2(592, 317)
 
-[node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
-color = Color(0.458824, 0.466667, 0.447059, 1)
-day_time = 10.0
-night_time = 15.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 script = ExtResource("4_mv4kg")
 
-[node name="EndTurnBtn" parent="CanvasLayer" instance=ExtResource("4_0hyxq")]
+[node name="EndTurnBtn" parent="Camera2D/CanvasLayer" instance=ExtResource("4_0hyxq")]
 visible = false
 offset_left = 28.0
 offset_top = 11.0
@@ -33,14 +28,19 @@ offset_right = 106.0
 offset_bottom = 42.0
 action_mode = 1
 
-[node name="SuspitionBar" parent="CanvasLayer" instance=ExtResource("6_u86mm")]
+[node name="SuspitionBar" parent="Camera2D/CanvasLayer" instance=ExtResource("6_u86mm")]
 offset_left = 34.0
 offset_top = 579.0
 offset_right = 298.0
 offset_bottom = 615.0
 
-[node name="Label" parent="CanvasLayer" instance=ExtResource("7_l4or3")]
+[node name="Label" parent="Camera2D/CanvasLayer" instance=ExtResource("7_l4or3")]
 anchors_preset = 0
 
-[connection signal="cell_suspicious" from="WorldMap" to="CanvasLayer/SuspitionBar" method="_on_map_cell_suspicious"]
-[connection signal="pressed" from="CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_button_pressed"]
+[node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
+color = Color(0.458824, 0.466667, 0.447059, 1)
+day_time = 10.0
+night_time = 15.0
+
+[connection signal="cell_suspicious" from="WorldMap" to="Camera2D/CanvasLayer/SuspitionBar" method="_on_map_cell_suspicious"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_button_pressed"]
