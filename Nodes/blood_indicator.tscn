@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0bcpfdmif4bq"]
+[gd_scene load_steps=2 format=3 uid="uid://dfsm17ef20u2f"]
 
 [ext_resource type="Script" path="res://Scripts/blood_indicator.gd" id="1_www1s"]
 
-[node name="Label" type="Label"]
+[node name="BloodIndicator" type="Label"]
 offset_left = 1002.0
 offset_top = 11.0
 offset_right = 1128.0
