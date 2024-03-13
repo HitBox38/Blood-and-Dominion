@@ -21,7 +21,7 @@ func add_money_timed(delta):
 	time += delta
 	
 	if time >= seconds_to_money: # then add money
-		current_money += money_to_add
+		add_money(money_to_add)
 		time = 0
 
 func add_money(amount:int):
