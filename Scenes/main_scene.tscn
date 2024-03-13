@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://n8rakfda73kw"]
+[gd_scene load_steps=9 format=3 uid="uid://cmsym24flsyge"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
 [ext_resource type="PackedScene" uid="uid://bmymf2wru6hfv" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
-[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
+[ext_resource type="PackedScene" uid="uid://ba1tplpfjqyl8" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
 [ext_resource type="Script" path="res://Scripts/ui_control.gd" id="4_mv4kg"]
-[ext_resource type="PackedScene" uid="uid://dfsm17ef20u2f" path="res://Nodes/blood_indicator.tscn" id="6_250et"]
-[ext_resource type="PackedScene" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
-[ext_resource type="PackedScene" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
+[ext_resource type="PackedScene" uid="uid://b0bcpfdmif4bq" path="res://Nodes/blood_indicator.tscn" id="6_250et"]
+[ext_resource type="PackedScene" uid="uid://btbimtupjvmuh" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
+[ext_resource type="PackedScene" uid="uid://gt6wgoaneag7" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="WorldMap" parent="." instance=ExtResource("1_1n2f3")]
+infection_spread_max = 0.415
 infection_suspicion_chance = 0.2
 infection_suspicion_amount = 0.1
 
@@ -46,8 +47,7 @@ anchors_preset = 0
 
 [node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
 color = Color(0.458824, 0.466667, 0.447059, 1)
-day_time = 10.0
-night_time = 15.0
+night_time = 2.5
 
 [connection signal="cell_suspicious" from="WorldMap" to="Camera2D/CanvasLayer/SuspitionBar" method="_on_map_cell_suspicious"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_button_pressed"]

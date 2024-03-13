@@ -7,17 +7,35 @@ extends TileMap
 @export var infection_suspicion_chance = 0.35
 @export var infection_suspicion_amount = 1.0
 
+@export var church_min_suspicion = 40.0
+@export var church_build_max_time = 30
+@export var church_build_min_time = 10
+@export var max_churches = 10
+
 signal cell_suspicious(amount:float)
 
-var prevTileChanged = Vector2i.MAX 
-var need_cell_selection = true 
+var prevTileChanged = Vector2i.MAX
+var need_cell_selection = true
 var infected_cell_tiles = {}
 var infection_time = 0
+
+var church_build_time = 0.0
+var church_build_wait_time = 25.0
+var church_cell_tiles = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if TimeCycle.is_day:
 		spread_infection(delta)
+		# if reached certain suspicion then start building churches based on timer
+		if Suspicion.player_suspicion >= church_min_suspicion:
+			church_build_wait_time = church_build_max_time - (Suspicion.player_suspicion / 100) * (church_build_max_time - church_build_min_time)
+			church_build_time += delta
+			if church_build_time >= church_build_wait_time:
+				print_debug(church_build_wait_time)
+				church_build_time = 0.0
+				build_church()
+	
 	# changing selection cursor
 	if need_cell_selection:
 		change_selected(Vector2i(2, 0))
@@ -46,7 +64,7 @@ func spread_infection(delta):
 				var surr_cells = get_surrounding_cells(tile)
 				for l in range(surr_cells.size()):
 					var cell = surr_cells[l]
-					if get_cell_source_id(1, cell) == -1:
+					if get_cell_source_id(1, cell) == -1 or church_cell_tiles.has(cell):
 						continue
 					randomize()
 					if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
@@ -80,3 +98,20 @@ func _input(event):
 				else:
 					infected_cell_tiles[tile] = 1
 				need_cell_selection = false
+
+func build_church():
+	var possible_cells = get_used_cells(1)
+	# build churches when reached certain suspicion
+	var cell_to_build_on = possible_cells.pick_random()
+	while infected_cell_tiles.has(cell_to_build_on) or church_cell_tiles.has(cell_to_build_on):
+		randomize()
+		cell_to_build_on = possible_cells.pick_random()
+		if church_cell_tiles.size() >= max_churches:
+			break
+	if church_cell_tiles.size() < max_churches:
+		# build church
+		set_cell(2, cell_to_build_on, 4, Vector2i.ZERO)
+		if church_cell_tiles.is_empty():
+			church_cell_tiles = [ cell_to_build_on ]
+		else:
+			church_cell_tiles.append(cell_to_build_on)
