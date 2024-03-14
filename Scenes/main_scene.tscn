@@ -15,6 +15,7 @@
 infection_spread_max = 0.415
 infection_suspicion_chance = 0.2
 infection_suspicion_amount = 0.1
+church_ward_radius = 2
 
 [node name="Camera2D" parent="." instance=ExtResource("2_xkvao")]
 position = Vector2(592, 317)

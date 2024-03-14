@@ -11,6 +11,7 @@ extends TileMap
 @export var church_build_max_time = 30
 @export var church_build_min_time = 10
 @export var max_churches = 10
+@export var church_ward_radius = 3
 
 signal cell_suspicious(amount:float)
 
@@ -21,7 +22,7 @@ var infection_time = 0
 
 var church_build_time = 0.0
 var church_build_wait_time = 25.0
-var church_cell_tiles = []
+var church_cell_tiles = {} # dictionary is like Vector2i pos : Vector2i[] surrounding_cells
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,6 +30,7 @@ func _process(delta):
 		spread_infection(delta)
 		# if reached certain suspicion then start building churches based on timer
 		if Suspicion.player_suspicion >= church_min_suspicion:
+			# creating new churches
 			church_build_wait_time = church_build_max_time - (Suspicion.player_suspicion / 100) * (church_build_max_time - church_build_min_time)
 			church_build_time += delta
 			if church_build_time >= church_build_wait_time:
@@ -64,7 +66,7 @@ func spread_infection(delta):
 				var surr_cells = get_surrounding_cells(tile)
 				for l in range(surr_cells.size()):
 					var cell = surr_cells[l]
-					if get_cell_source_id(1, cell) == -1 or church_cell_tiles.has(cell):
+					if !is_cell_viable_for_infection(cell):
 						continue
 					randomize()
 					if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
@@ -108,10 +110,35 @@ func build_church():
 		cell_to_build_on = possible_cells.pick_random()
 		if church_cell_tiles.size() >= max_churches:
 			break
-	if church_cell_tiles.size() < max_churches:
+	if church_cell_tiles.size() < max_churches and is_cell_viable_for_church(cell_to_build_on):
 		# build church
 		set_cell(2, cell_to_build_on, 4, Vector2i.ZERO)
+		var surr_tiles = get_surrounding_cells_by_radius(cell_to_build_on)
 		if church_cell_tiles.is_empty():
-			church_cell_tiles = [ cell_to_build_on ]
+			church_cell_tiles = { cell_to_build_on : surr_tiles }
 		else:
-			church_cell_tiles.append(cell_to_build_on)
+			church_cell_tiles[cell_to_build_on] = surr_tiles
+		for surr_cell in surr_tiles:
+			set_cell(2, surr_cell, 4, Vector2i(1, 0))
+
+# Function to get the surrounding cells of a given cell
+# within a specified radius
+func get_surrounding_cells_by_radius(church_cell):
+	var surr_cells = []
+	for x_offset in range(-church_ward_radius, church_ward_radius + 1):
+		for y_offset in range(-church_ward_radius, church_ward_radius + 1):
+			# Skip the center cell
+			if x_offset == 0 and y_offset == 0:
+				continue
+			var surr_cell_pos = church_cell + Vector2i(x_offset, y_offset)
+			if is_cell_viable_for_church(surr_cell_pos): # Implement this function based on your criteria (e.g., cell exists, is within bounds, etc.)
+				surr_cells.append(surr_cell_pos)
+	return surr_cells
+
+func is_cell_viable_for_church(cell_pos):
+	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.keys().has(cell_pos))
+	return is_viable
+	
+func is_cell_viable_for_infection(cell_pos):
+	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.values().has(cell_pos))
+	return is_viable
