@@ -7,7 +7,7 @@
     "ngativeEffect": {
       "blood": -20
     },
-    "flavourText": "“Go on… tell them. Who will ever believe you?” ",
+    "flavourText": "“Go on… tell them. Who will ever believe you?”",
     "source": "slums"
   },
   {
@@ -27,7 +27,7 @@
     "positiveEffect": {
       "suspicion": {
         "days": 3,
-        "modifier": 0.25
+        "amount": -10
       }
     },
     "ngativeEffect": {
