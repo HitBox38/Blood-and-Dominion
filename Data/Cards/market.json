@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Panacea distribution",
+    "positiveEffect": {
+      "money": 20
+    },
+    "negativeEffect": {
+      "blood": -20
+    },
+    "flavourText": "“What if we actually do what we claim to do”",
+    "source": "market"
+  },
+  {
+    "name": "Blood donations",
+    "positiveEffect": {
+      "blood": 10
+    },
+    "negativeEffect": {
+      "money": -15
+    },
+    "flavourText": "“We can alway pay them for it”",
+    "source": "market"
+  },
+  {
+    "name": "Healing centre",
+    "positiveEffect": {
+      "money": {
+        "days": 3,
+        "modifier": 1.5
+      }
+    },
+    "negativeEffect": {
+      "suspicion": 10,
+      "blood": -10
+    },
+    "flavourText": "“For a small payment we can heal any injury”",
+    "source": "market"
+  }
+]

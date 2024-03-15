@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Corrupt statesmen",
+    "positiveEffect": {
+      "church": -1
+    },
+    "ngativeEffect": {
+      "blood": -10,
+      "money": -15
+    },
+    "flavourText": "“Its funny how easy they turn on each other when you pay them to do so”",
+    "source": "rich"
+  },
+  {
+    "name": "News campaign",
+    "positiveEffect": {
+      "suspicion": -10
+    },
+    "ngativeEffect": {
+      "blood": -10,
+      "money": -15
+    },
+    "flavourText": "“Write it down. I want it to be on the front page.”",
+    "source": "rich"
+  },
+  {
+    "name": "Taxation",
+    "positiveEffect": {
+      "money": 20
+    },
+    "ngativeEffect": {
+      "suspicion": 10,
+      "blood": -10
+    },
+    "flavourText": "“The best kind of theft. The legal kind”",
+    "source": "rich"
+  }
+]
