@@ -32,5 +32,5 @@ func move_to_day():
 		next_color = Color.WHITE
 		time = 0
 
-func _on_button_pressed():
+func _on_end_turn_btn_pressed():
 	move_to_day()

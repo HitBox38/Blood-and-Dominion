@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcemx8qgnoqea"]
+
+[ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_2k8wo"]
+[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="2_ck7rw"]
+[ext_resource type="PackedScene" uid="uid://vji82moe1aob" path="res://Nodes/suspition_bar.tscn" id="3_yshcv"]
+[ext_resource type="PackedScene" path="res://Nodes/blood_indicator.tscn" id="4_f17a1"]
+[ext_resource type="PackedScene" path="res://Nodes/money_indicator.tscn" id="5_ykdvn"]
+[ext_resource type="PackedScene" uid="uid://dkhge2wcy77g4" path="res://Nodes/daily_event_newspaper.tscn" id="6_asc52"]
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2k8wo")
+
+[node name="EndTurnBtn" parent="." instance=ExtResource("2_ck7rw")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.158
+anchor_bottom = 0.147
+offset_left = 30.0
+offset_top = 24.0
+offset_right = -77.45
+offset_bottom = -56.576
+theme = ExtResource("1_2k8wo")
+action_mode = 1
+
+[node name="SuspitionBar" parent="." instance=ExtResource("3_yshcv")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.867
+anchor_right = 0.268
+anchor_bottom = 0.99
+offset_left = 0.449997
+offset_top = 29.824
+offset_right = -20.983
+offset_bottom = -26.285
+theme = ExtResource("1_2k8wo")
+
+[node name="BloodIndicator" parent="." instance=ExtResource("4_f17a1")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.772
+anchor_top = 0.76
+anchor_right = 0.911
+anchor_bottom = 0.865
+offset_left = 23.7
+offset_top = 26.72
+offset_right = -26.2251
+offset_bottom = -28.373
+theme = ExtResource("1_2k8wo")
+
+[node name="MoneyIndicator" parent="." instance=ExtResource("5_ykdvn")]
+layout_mode = 1
+anchor_left = 0.741
+anchor_top = 0.857
+anchor_right = 0.938
+anchor_bottom = 0.983
+offset_left = 38.2249
+offset_top = 27.1039
+offset_right = -37.1561
+offset_bottom = -22.873
+theme = ExtResource("1_2k8wo")
+
+[node name="DailyEventNews" parent="." instance=ExtResource("6_asc52")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.122
+anchor_top = -0.103
+anchor_right = 0.834
+anchor_bottom = 1.028
+offset_left = 104.45
+offset_top = 73.984
+offset_right = -33.498
+offset_bottom = -42.674

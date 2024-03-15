@@ -1,26 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkhge2wcy77g4"]
+[gd_scene load_steps=5 format=3 uid="uid://dkhge2wcy77g4"]
 
+[ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_1pgoi"]
 [ext_resource type="Texture2D" uid="uid://ba0icx0gorpmt" path="res://Assets/Art/Newspaper/newspaper_2_happy.png" id="1_ba8ll"]
 [ext_resource type="Script" path="res://Nodes/daily_event.gd" id="2_evrap"]
 
+[sub_resource type="Theme" id="Theme_po2fm"]
+
 [node name="Newspaper" type="TextureRect"]
-offset_left = 281.0
-offset_top = -28.0
-offset_right = 1043.0
-offset_bottom = 761.0
+anchors_preset = -1
+anchor_left = 0.218
+anchor_top = -0.079
+anchor_right = 0.813
+anchor_bottom = 1.017
+offset_left = -0.0400085
+offset_top = -0.119999
+offset_right = 0.359985
+offset_bottom = -0.240051
+theme = ExtResource("1_1pgoi")
 texture = ExtResource("1_ba8ll")
 stretch_mode = 4
 script = ExtResource("2_evrap")
 
 [node name="TitleLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 169.0
-offset_top = 140.0
-offset_right = 624.0
-offset_bottom = 185.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.177
+anchor_right = 0.819
+anchor_bottom = 0.234
+offset_left = -0.164017
+offset_top = 0.347
+offset_right = -0.078064
+offset_bottom = 0.373993
+theme = SubResource("Theme_po2fm")
 theme_override_colors/font_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_colors/font_shadow_color = Color(0.584314, 0.584314, 0.584314, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "event title"
 horizontal_alignment = 1
+
+[node name="SubTitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.223
+anchor_top = 0.28
+anchor_right = 0.819
+anchor_bottom = 0.465
+offset_left = 0.0740356
+offset_top = 0.0800171
+offset_right = 0.921997
+offset_bottom = 202.115
+theme = SubResource("Theme_po2fm")
+theme_override_colors/font_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.458824, 0.458824, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "As a mystery sickness sweeps through the city. The demand for a cure is growing fast. Both the alchemists and the church answer the call."
+autowrap_mode = 3
