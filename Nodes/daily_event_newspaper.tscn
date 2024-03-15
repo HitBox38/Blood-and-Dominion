@@ -1,11 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://de718hn2s5prm"]
+[gd_scene load_steps=3 format=3 uid="uid://dkhge2wcy77g4"]
 
 [ext_resource type="Texture2D" uid="uid://ba0icx0gorpmt" path="res://Assets/Art/Newspaper/newspaper_2_happy.png" id="1_ba8ll"]
+[ext_resource type="Script" path="res://Nodes/daily_event.gd" id="2_evrap"]
 
-[node name="TextureRect" type="TextureRect"]
-offset_left = 207.0
-offset_top = -54.0
-offset_right = 969.0
-offset_bottom = 708.0
+[node name="Newspaper" type="TextureRect"]
+offset_left = 281.0
+offset_top = -28.0
+offset_right = 1043.0
+offset_bottom = 761.0
 texture = ExtResource("1_ba8ll")
 stretch_mode = 4
+script = ExtResource("2_evrap")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 140.0
+offset_right = 624.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_shadow_color = Color(0.584314, 0.584314, 0.584314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "event title"
+horizontal_alignment = 1

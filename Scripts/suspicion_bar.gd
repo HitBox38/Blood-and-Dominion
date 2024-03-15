@@ -26,5 +26,5 @@ func reduce_suspicion(amount:float):
 	if current_suspicion <= 0:
 		current_suspicion = 0
 
-func _on_map_cell_suspicious(amount):
-	add_suspicion(amount)
+#func _on_map_cell_suspicious(amount):
+#	add_suspicion(amount)

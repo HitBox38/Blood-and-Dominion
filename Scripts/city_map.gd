@@ -4,8 +4,8 @@ extends TileMap
 @export var infection_spread_min = 0.02
 @export var infection_spread_max = 0.15
 
-@export var infection_suspicion_chance = 0.35
-@export var infection_suspicion_amount = 1.0
+#@export var infection_suspicion_chance = 0.35
+#@export var infection_suspicion_amount = 1.0
 
 @export var church_min_suspicion = 40.0
 @export var church_build_max_time = 30
@@ -69,8 +69,8 @@ func spread_infection(delta):
 					if !is_cell_viable_for_infection(cell):
 						continue
 					randomize()
-					if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
-						emit_signal("cell_suspicious", infection_suspicion_amount)
+					#if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
+					#	emit_signal("cell_suspicious", infection_suspicion_amount)
 					var infection_spreading = randf_range(infection_spread_min, infection_spread_max)
 					if !infected_cell_tiles.has(cell):
 						infected_cell_tiles[cell] = infection_spreading
