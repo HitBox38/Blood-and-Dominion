@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Scare the opposition",
+    "positiveEffect": {
+      "suspicion": -10
+    },
+    "ngativeEffect": {
+      "blood": -20
+    },
+    "flavourText": "“Go on… tell them. Who will ever believe you?” ",
+    "source": "slums"
+  },
+  {
+    "name": "Cull the unworthy",
+    "positiveEffect": {
+      "blood": 20
+    },
+    "ngativeEffect": {
+      "control": -1,
+      "suspicion": 10
+    },
+    "flavourText": "“Those unworthy of the blood will be drained of theirs”",
+    "source": "slums"
+  },
+  {
+    "name": "Speakeasy",
+    "positiveEffect": {
+      "suspicion": {
+        "days": 3,
+        "modifier": 0.25
+      }
+    },
+    "ngativeEffect": {
+      "blood": {
+        "days": 3,
+        "amount": -10
+      }
+    },
+    "flavourText": "“Make it a really nice place. Entry with Invitations only”",
+    "source": "slums"
+  }
+]
