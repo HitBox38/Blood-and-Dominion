@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be34oyj8j51cn"
-path="res://.godot/imported/control_mask.png-dd847705599a9dc133770f3407dae128.ctex"
+uid="uid://b7rt5o338264o"
+path="res://.godot/imported/borders.png-bf9d8ae8dfb567cda6f8fc27e54fe6b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/control_mask.png"
-dest_files=["res://.godot/imported/control_mask.png-dd847705599a9dc133770f3407dae128.ctex"]
+source_file="res://Assets/Art/Tiles/borders.png"
+dest_files=["res://.godot/imported/borders.png-bf9d8ae8dfb567cda6f8fc27e54fe6b7.ctex"]
 
 [params]
 

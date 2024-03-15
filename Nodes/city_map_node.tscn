@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bms2rbjike78j"]
 
 [ext_resource type="Texture2D" uid="uid://k5mtggpvtpyf" path="res://icon.svg" id="1_efylv"]
-[ext_resource type="Texture2D" uid="uid://b7rt5o338264o" path="res://Assets/Art/borders.png" id="2_ulji7"]
-[ext_resource type="Texture2D" uid="uid://be34oyj8j51cn" path="res://Assets/Art/control_mask.png" id="3_3en0w"]
-[ext_resource type="Texture2D" uid="uid://drabjr5pypcsc" path="res://Assets/Art/walls_tilesheet.png" id="4_j2pgv"]
-[ext_resource type="Texture2D" uid="uid://cfjto412sr6y6" path="res://Assets/Art/white.png" id="5_6etda"]
+[ext_resource type="Texture2D" uid="uid://b7rt5o338264o" path="res://Assets/Art/Tiles/borders.png" id="2_ulji7"]
+[ext_resource type="Texture2D" uid="uid://be34oyj8j51cn" path="res://Assets/Art/Tiles/control_mask.png" id="3_3en0w"]
+[ext_resource type="Texture2D" uid="uid://drabjr5pypcsc" path="res://Assets/Art/Tiles/walls_tilesheet.png" id="4_j2pgv"]
+[ext_resource type="Texture2D" uid="uid://cfjto412sr6y6" path="res://Assets/Art/Tiles/white.png" id="5_6etda"]
 [ext_resource type="Script" path="res://Scripts/city_map.gd" id="5_q47h1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bsqxv"]
@@ -115,6 +115,20 @@ texture = ExtResource("4_j2pgv")
 3:4/0 = 0
 4:4/0 = 0
 5:4/0 = 0
+2:1/0 = 0
+2:0/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:5/0 = 0
+4:5/0 = 0
+3:5/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+1:6/0 = 0
+0:6/0 = 0
+0:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pp3cd"]
 texture = ExtResource("5_6etda")

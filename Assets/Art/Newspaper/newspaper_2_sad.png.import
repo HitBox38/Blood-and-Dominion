@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7rt5o338264o"
-path="res://.godot/imported/borders.png-d2a85a3b0a5697d6ee5acfd3670e155f.ctex"
+uid="uid://ck1easa1c7vsl"
+path="res://.godot/imported/newspaper_2_sad.png-52964b536134ee047cde8b3eecb21aaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/borders.png"
-dest_files=["res://.godot/imported/borders.png-d2a85a3b0a5697d6ee5acfd3670e155f.ctex"]
+source_file="res://Assets/Art/Newspaper/newspaper_2_sad.png"
+dest_files=["res://.godot/imported/newspaper_2_sad.png-52964b536134ee047cde8b3eecb21aaa.ctex"]
 
 [params]
 

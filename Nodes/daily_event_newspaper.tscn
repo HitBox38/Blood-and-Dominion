@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://de718hn2s5prm"]
+
+[ext_resource type="Texture2D" uid="uid://ba0icx0gorpmt" path="res://Assets/Art/Newspaper/newspaper_2_happy.png" id="1_ba8ll"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = 207.0
+offset_top = -54.0
+offset_right = 969.0
+offset_bottom = 708.0
+texture = ExtResource("1_ba8ll")
+stretch_mode = 4
