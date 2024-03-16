@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
-[ext_resource type="PackedScene" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
-[ext_resource type="PackedScene" uid="uid://ba1tplpfjqyl8" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
+[ext_resource type="PackedScene" uid="uid://bmymf2wru6hfv" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
+[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
 [ext_resource type="Script" path="res://Scripts/ui_control.gd" id="4_j3uva"]
 [ext_resource type="PackedScene" uid="uid://b0bcpfdmif4bq" path="res://Nodes/blood_indicator.tscn" id="6_250et"]
 [ext_resource type="PackedScene" uid="uid://vji82moe1aob" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
-[ext_resource type="PackedScene" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
+[ext_resource type="PackedScene" uid="uid://gt6wgoaneag7" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
 [ext_resource type="PackedScene" uid="uid://dkhge2wcy77g4" path="res://Nodes/daily_event_newspaper.tscn" id="8_oqt6m"]
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="8_vsn4k"]
 
@@ -71,6 +71,7 @@ offset_bottom = -0.292969
 theme = ExtResource("8_vsn4k")
 
 [node name="MoneyIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("7_l4or3")]
+anchors_preset = -1
 anchor_left = 0.771
 anchor_top = 0.895
 anchor_right = 0.909
@@ -92,6 +93,18 @@ offset_bottom = -0.194092
 
 [node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
 color = Color(0.458824, 0.466667, 0.447059, 1)
-night_time = 2.5
+day_time = 5.0
 
+[connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="WorldMap" method="_on_time_cycle_day_passed"]
 [connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_end_turn_btn_pressed"]
+[connection signal="event_add_blood" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="increase_blood"]
+[connection signal="event_add_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="add_money"]
+[connection signal="event_add_suspicion" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="add_suspicion"]
+[connection signal="event_change_modifier_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="_on_daily_event_news_event_change_modifier_money"]
+[connection signal="event_change_modifier_spread" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="WorldMap" method="_on_daily_event_news_event_change_modifier_spread"]
+[connection signal="event_despawn_church" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="WorldMap" method="_on_daily_event_news_event_despawn_church"]
+[connection signal="event_reduce_blood" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="decrease_blood"]
+[connection signal="event_reduce_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
+[connection signal="event_reduce_suspicion" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="reduce_suspicion"]
+[connection signal="event_spawn_church" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="WorldMap" method="_on_daily_event_news_event_spawn_church"]
+[connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="_on_time_cycle_day_passed"]

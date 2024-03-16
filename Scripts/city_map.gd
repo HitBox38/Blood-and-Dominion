@@ -20,6 +20,8 @@ var need_cell_selection = true
 var infected_cell_tiles = {}
 var infection_time = 0
 
+var modifiers = []
+
 var church_build_time = 0.0
 var church_build_wait_time = 25.0
 var church_cell_tiles = {} # dictionary is like Vector2i pos : Vector2i[] surrounding_cells
@@ -54,8 +56,11 @@ func change_selected(selection_atlas):
 
 func spread_infection(delta):
 	infection_time += delta
-	
-	if infection_time > infection_max_time:
+	var modified_ifection_max_time = infection_max_time
+	for mod in modifiers:
+		modified_ifection_max_time = modified_ifection_max_time / mod.modifier
+	print_debug(modified_ifection_max_time)
+	if infection_time > modified_ifection_max_time:
 		infection_time = 0
 		for i in range(infected_cell_tiles.size()):
 			var tile = infected_cell_tiles.keys()[i]
@@ -142,3 +147,37 @@ func is_cell_viable_for_church(cell_pos):
 func is_cell_viable_for_infection(cell_pos):
 	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.values().has(cell_pos))
 	return is_viable
+
+
+func _on_daily_event_news_event_spawn_church(amount: int):
+	for i in range(0, amount):
+		build_church()
+
+
+func _on_daily_event_news_event_despawn_church(amount: int):
+	if !church_cell_tiles.is_empty():
+		for i in range(0, abs(amount)):
+			var size = church_cell_tiles.size()
+			var random_key = church_cell_tiles.keys()[randi() % size]
+			
+			set_cell(2, church_cell_tiles[random_key], 2, Vector2i(3, 0))
+			
+			for surr_cell in church_cell_tiles[random_key]:
+				set_cell(2, surr_cell, 2, Vector2i(3, 0))
+				
+			church_cell_tiles.erase(random_key)
+
+func _on_time_cycle_day_passed():
+	modifiers = modifiers.map(reduce_day_modifier_in_array).filter(remove_day_zero_modifier_in_array)
+
+func reduce_day_modifier_in_array(modifier: Dictionary):
+	if modifier.days > 0:
+		return { "days": modifier.days - 1, "modifier": modifier.modifier }
+	else:
+		pass
+
+func remove_day_zero_modifier_in_array(modifier):
+	return modifier != null
+
+func _on_daily_event_news_event_change_modifier_spread(days, modifier):
+	modifiers.append({ "days": days, "modifier": modifier })
