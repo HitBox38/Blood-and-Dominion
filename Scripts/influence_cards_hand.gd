@@ -47,7 +47,7 @@ func _ready():
 	add_cards_to_bank()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	can_add_cards = player_cards.size() < 3
 	for card in player_cards:
 		if card.is_card_highlighted and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -154,5 +154,5 @@ func card_effects(card_data_obj:Dictionary):
 			if church is float:
 				emit_signal("card_spawn_church", church)
 
-func _on_player_buy_card(cost):
+func _on_player_buy_card(_cost):
 	add_card_to_hand()

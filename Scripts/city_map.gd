@@ -127,7 +127,7 @@ func _input(event):
 					infected_cell_tiles = { tile : 1 }
 				else:
 					infected_cell_tiles[tile] = 1
-				need_cell_selection = true
+				need_cell_selection = false
 
 func build_church():
 	var possible_cells = get_used_cells(1)
