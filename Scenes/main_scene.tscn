@@ -43,6 +43,7 @@ offset_left = 0.559998
 offset_top = 0.24
 offset_right = 0.62999
 offset_bottom = 0.303997
+scale = Vector2(1, 1.00685)
 theme = ExtResource("8_vsn4k")
 action_mode = 1
 
@@ -82,6 +83,7 @@ offset_bottom = 0.166931
 theme = ExtResource("8_vsn4k")
 
 [node name="DailyEventNews" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("8_oqt6m")]
+visible = false
 anchor_left = 0.204
 anchor_right = 0.808
 anchor_bottom = 0.969

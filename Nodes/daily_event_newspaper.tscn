@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_1pgoi"]
 [ext_resource type="Texture2D" uid="uid://ba0icx0gorpmt" path="res://Assets/Art/Newspaper/newspaper_2_happy.png" id="1_ba8ll"]
-[ext_resource type="Script" path="res://Nodes/daily_event.gd" id="2_evrap"]
+[ext_resource type="Script" path="res://Scripts/daily_event.gd" id="2_evrap"]
 
 [sub_resource type="Theme" id="Theme_po2fm"]
 

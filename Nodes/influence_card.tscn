@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://hdq1l7wmisc0"]
+
+[ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_fyf37"]
+[ext_resource type="Script" path="res://Scripts/influence_card.gd" id="2_0yt73"]
+[ext_resource type="Texture2D" uid="uid://dj30nnlvcip1o" path="res://Assets/Art/Cards/card.png" id="2_bdw8l"]
+[ext_resource type="Texture2D" uid="uid://c3trxh0wfc0gu" path="res://Assets/Art/Icons/icons.png" id="3_6iurp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c14p"]
+atlas = ExtResource("3_6iurp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls8ry"]
+atlas = ExtResource("3_6iurp")
+region = Rect2(16, 16, 16, 16)
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_fyf37")
+script = ExtResource("2_0yt73")
+
+[node name="BackGround" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166
+anchor_top = 0.456
+anchor_right = 0.166
+anchor_bottom = 0.456
+offset_left = -49.8
+offset_top = -136.8
+offset_right = 250.2
+offset_bottom = 163.2
+texture = ExtResource("2_bdw8l")
+stretch_mode = 4
+
+[node name="TitleLabel" type="Label" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.197
+anchor_top = 0.073
+anchor_right = 0.817
+anchor_bottom = 0.163
+offset_left = 22.9
+offset_top = 0.0999985
+offset_right = -23.1
+offset_bottom = -3.9
+grow_horizontal = 2
+text = "card title
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PositiveLabel" type="Label" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083
+anchor_top = 0.233
+anchor_right = 0.493
+anchor_bottom = 0.537
+offset_left = 0.0999985
+offset_top = 0.0999985
+offset_right = 0.0999908
+offset_bottom = -0.100006
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NegativeLabel" type="Label" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.527
+anchor_top = 0.223
+anchor_right = 0.937
+anchor_bottom = 0.527
+offset_left = -0.100006
+offset_top = 0.0999985
+offset_right = -0.100006
+offset_bottom = -0.100006
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.153
+anchor_top = 0.537
+anchor_right = 0.287
+anchor_bottom = 0.67
+offset_left = 0.0999947
+offset_top = -0.100006
+offset_right = -0.0999985
+texture = SubResource("AtlasTexture_5c14p")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.617
+anchor_top = 0.533
+anchor_right = 0.75
+anchor_bottom = 0.667
+offset_left = -0.100006
+offset_top = 0.0999908
+offset_right = -1.52588e-05
+offset_bottom = -0.100021
+texture = SubResource("AtlasTexture_ls8ry")
+stretch_mode = 4
+
+[node name="FlavourLabel" type="Label" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.177
+anchor_top = 0.71
+anchor_right = 0.837
+anchor_bottom = 0.937
+offset_left = -0.0999985
+offset_top = -1.52588e-05
+offset_right = -0.100006
+offset_bottom = -0.100006
+theme_override_font_sizes/font_size = 14
+text = "alot of flavour text"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

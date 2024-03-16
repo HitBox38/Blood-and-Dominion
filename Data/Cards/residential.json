@@ -1,45 +1,45 @@
 [
   {
-    "name": "Blend in",
-    "positiveEffect": {
-      "suspicion": -10
-    },
-    "negativeEffect": {
-      "spread": {
-        "days": 3,
-        "modifier": 0.25
-      }
-    },
-    "flavourText": "“No one suspects a family with kids”",
-    "source": "residential"
+	"name": "Blend in",
+	"positiveEffect": {
+	  "suspicion": -10
+	},
+	"negativeEffect": {
+	  "spread": {
+		"days": 3,
+		"modifier": 0.25
+	  }
+	},
+	"flavourText": "“No one suspects a family with kids”",
+	"source": "residential"
   },
   {
-    "name": "Defy the faith",
-    "positiveEffect": {
-      "church": -1
-    },
-    "negativeEffect": {
-      "suspicion": 10,
-      "blood": -10
-    },
-    "flavourText": "“Join me and break the chains of your would be masters”",
-    "source": "residential"
+	"name": "Defy the faith",
+	"positiveEffect": {
+	  "church": -1
+	},
+	"negativeEffect": {
+	  "suspicion": 10,
+	  "blood": -10
+	},
+	"flavourText": "“Join me and break the chains of your would be masters”",
+	"source": "residential"
   },
   {
-    "name": "Business investment",
-    "positiveEffect": {
-      "blood": {
-        "days": 3,
-        "amount": 5
-      }
-    },
-    "negativeEffect": {
-      "money": {
-        "days": 3,
-        "modifier": 0.25
-      }
-    },
-    "flavourText": "“We can loan them the money but the interest will be paid in blood”",
-    "source": "residential"
+	"name": "Business investment",
+	"positiveEffect": {
+	  "blood": {
+		"days": 3,
+		"amount": 5
+	  }
+	},
+	"negativeEffect": {
+	  "money": {
+		"days": 3,
+		"modifier": 0.25
+	  }
+	},
+	"flavourText": "“We can loan them the money but the interest will be paid in blood”",
+	"source": "residential"
   }
 ]
