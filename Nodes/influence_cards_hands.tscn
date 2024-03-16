@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhcp1ptfxq6hb"]
 
-[ext_resource type="Script" path="res://Nodes/influence_cards_hand.gd" id="1_i3yif"]
+[ext_resource type="Script" path="res://Scripts/influence_cards_hand.gd" id="1_7y00u"]
 
 [node name="InfluenceCardsHands" type="VBoxContainer"]
 anchors_preset = -1
@@ -14,7 +14,7 @@ offset_right = -0.0400391
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_i3yif")
+script = ExtResource("1_7y00u")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="."]
 layout_mode = 2

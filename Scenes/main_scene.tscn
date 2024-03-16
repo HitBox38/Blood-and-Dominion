@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmsym24flsyge"]
+[gd_scene load_steps=13 format=3 uid="uid://cmsym24flsyge"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkhge2wcy77g4" path="res://Nodes/daily_event_newspaper.tscn" id="8_oqt6m"]
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="8_vsn4k"]
 [ext_resource type="PackedScene" uid="uid://bhcp1ptfxq6hb" path="res://Nodes/influence_cards_hands.tscn" id="9_gykk6"]
+[ext_resource type="Script" path="res://Scripts/BuyCardBtn.gd" id="11_yg5jb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -100,6 +101,15 @@ offset_top = -0.175995
 offset_right = -0.218018
 offset_bottom = -0.194092
 
+[node name="BuyCardBtn" type="Button" parent="Camera2D/Control/CanvasLayer"]
+offset_left = 367.0
+offset_top = 15.0
+offset_right = 822.0
+offset_bottom = 66.0
+theme = ExtResource("8_vsn4k")
+text = "BUY INFLUENCE CARD"
+script = ExtResource("11_yg5jb")
+
 [node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
 color = Color(0.458824, 0.466667, 0.447059, 1)
 day_time = 5.0
@@ -130,6 +140,8 @@ day_time = 5.0
 [connection signal="event_reduce_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
 [connection signal="event_reduce_suspicion" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="reduce_suspicion"]
 [connection signal="event_spawn_church" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="WorldMap" method="_on_daily_event_news_event_spawn_church"]
+[connection signal="player_bought_card" from="Camera2D/Control/CanvasLayer/BuyCardBtn" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
+[connection signal="player_bought_card" from="Camera2D/Control/CanvasLayer/BuyCardBtn" to="Camera2D/Control/CanvasLayer/InfluenceCardsHands" method="_on_player_buy_card"]
 [connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="_on_time_cycle_day_passed"]
 [connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="_on_time_cycle_day_passed"]
 [connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="_on_time_cycle_day_passed"]

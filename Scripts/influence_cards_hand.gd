@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+class_name CardsHolder
+
 # Suspicion signals
 signal card_add_suspicion(amount:float)
 signal card_reduce_suspicion(amount:float)
@@ -32,6 +34,8 @@ var player_cards = []
 var bank_cards = []
 var graveyard_cards = []
 
+static var can_add_cards:bool = false
+
 # JSON
 @export var file_path: String = "res://data/Cards/deck.json"
 
@@ -41,26 +45,26 @@ var deck: Array = JSON.parse_string(json_as_text)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_cards_to_bank()
-	add_card_to_hand()
-	add_card_to_hand()
-	add_card_to_hand()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	can_add_cards = player_cards.size() < 3
 	for card in player_cards:
 		if card.is_card_highlighted and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			# selected this card
-			graveyard_cards.append(card)
+			graveyard_cards.append(card.card_obj)
 			card_effects(card.card_obj)
 			player_cards.erase(card)
 			card.queue_free()
-			
+
+func add_card_to_hand():
+	# if the deck is empty reset it
 	if deck.size() <= 0:
 		deck = graveyard_cards
 		graveyard_cards = []
 		deck.shuffle()
-
-func add_card_to_hand():
+	if !can_add_cards:
+		return
 	var card_ui = card_scene.instantiate()
 	card_ui.set_card_data(deck[0])
 	$HFlowContainer.add_child(card_ui)
@@ -149,3 +153,6 @@ func card_effects(card_data_obj:Dictionary):
 			var church = card_data_obj.negativeEffect.church
 			if church is float:
 				emit_signal("card_spawn_church", church)
+
+func _on_player_buy_card(cost):
+	add_card_to_hand()
