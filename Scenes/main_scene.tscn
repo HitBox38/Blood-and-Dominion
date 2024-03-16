@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmsym24flsyge"]
+[gd_scene load_steps=13 format=3 uid="uid://cmsym24flsyge"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
-[ext_resource type="PackedScene" uid="uid://bmymf2wru6hfv" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
-[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
+[ext_resource type="PackedScene" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
+[ext_resource type="PackedScene" uid="uid://ba1tplpfjqyl8" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
 [ext_resource type="Script" path="res://Scripts/ui_control.gd" id="4_j3uva"]
 [ext_resource type="PackedScene" uid="uid://b0bcpfdmif4bq" path="res://Nodes/blood_indicator.tscn" id="6_250et"]
 [ext_resource type="PackedScene" uid="uid://vji82moe1aob" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://b8vldxdtmvkj5" path="res://Assets/Music/Loops/NighttimeSong.ogg" id="12_oh86r"]
 [ext_resource type="AudioStream" uid="uid://bi4h0dcxhnpdr" path="res://Assets/Music/Stingers/Win (1).ogg" id="12_u6wbb"]
 [ext_resource type="AudioStream" uid="uid://ddaj4nosrauyg" path="res://Assets/Music/Stingers/Lose.ogg" id="13_5iifm"]
+[ext_resource type="PackedScene" uid="uid://bhcp1ptfxq6hb" path="res://Nodes/influence_cards_hands.tscn" id="9_gykk6"]
+[ext_resource type="Script" path="res://Scripts/BuyCardBtn.gd" id="11_yg5jb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -58,10 +60,10 @@ anchor_left = 0.042
 anchor_top = 0.908
 anchor_right = 0.252
 anchor_bottom = 0.953
-offset_left = 0.449997
-offset_top = 0.304016
-offset_right = -0.503021
-offset_bottom = 0.35498
+offset_left = 4.24
+offset_top = -77.6159
+offset_right = 3.28699
+offset_bottom = -77.5649
 theme = ExtResource("8_vsn4k")
 
 [node name="BloodIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("6_250et")]
@@ -70,10 +72,10 @@ anchor_left = 0.791
 anchor_top = 0.797
 anchor_right = 0.891
 anchor_bottom = 0.826
-offset_left = -0.619995
-offset_top = 0.0799561
-offset_right = -0.625
-offset_bottom = -0.292969
+offset_left = 3.16998
+offset_top = -77.84
+offset_right = 3.16504
+offset_bottom = -71.72
 theme = ExtResource("8_vsn4k")
 start_blood = 1.0
 
@@ -83,13 +85,17 @@ anchor_left = 0.771
 anchor_top = 0.895
 anchor_right = 0.909
 anchor_bottom = 0.951
-offset_left = -0.174988
-offset_top = -0.256042
-offset_right = -0.0361328
-offset_bottom = 0.166931
+offset_left = 3.61499
+offset_top = -78.176
+offset_right = 3.75391
+offset_bottom = -77.753
 theme = ExtResource("8_vsn4k")
 
 [node name="InfluenceCardsHands" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("9_gykk6")]
+offset_left = -30.88
+offset_top = -93.0
+offset_right = -31.04
+offset_bottom = 213.0
 
 [node name="DailyEventNews" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("8_oqt6m")]
 anchor_left = 0.204
@@ -99,6 +105,15 @@ offset_left = -0.51004
 offset_top = -0.175995
 offset_right = -0.218018
 offset_bottom = -0.194092
+
+[node name="BuyCardBtn" type="Button" parent="Camera2D/Control/CanvasLayer"]
+offset_left = 367.0
+offset_top = 15.0
+offset_right = 822.0
+offset_bottom = 66.0
+theme = ExtResource("8_vsn4k")
+text = "BUY INFLUENCE CARD"
+script = ExtResource("11_yg5jb")
 
 [node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
 color = Color(0.458824, 0.466667, 0.447059, 1)
@@ -118,6 +133,20 @@ stream = ExtResource("13_5iifm")
 
 [connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="WorldMap" method="_on_time_cycle_day_passed"]
 [connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_end_turn_btn_pressed"]
+[connection signal="card_add_blood" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="increase_blood"]
+[connection signal="card_add_money" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="add_money"]
+[connection signal="card_add_suspicion" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="add_suspicion"]
+[connection signal="card_blood_per_day" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="_on_card_change_modifier_blood"]
+[connection signal="card_control_random" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="WorldMap" method="do_select_random"]
+[connection signal="card_control_select" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="WorldMap" method="do_need_selection"]
+[connection signal="card_despawn_church" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="WorldMap" method="_on_daily_event_news_event_despawn_church"]
+[connection signal="card_modifier_money" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="_on_daily_event_news_event_change_modifier_money"]
+[connection signal="card_modifier_spread" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="WorldMap" method="_on_daily_event_news_event_change_modifier_spread"]
+[connection signal="card_reduce_blood" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="decrease_blood"]
+[connection signal="card_reduce_money" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
+[connection signal="card_reduce_suspicion" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="reduce_suspicion"]
+[connection signal="card_spawn_church" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="WorldMap" method="_on_daily_event_news_event_spawn_church"]
+[connection signal="card_suspicion_per_day" from="Camera2D/Control/CanvasLayer/InfluenceCardsHands" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="_on_card_change_modifier_suspicion"]
 [connection signal="event_add_blood" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="increase_blood"]
 [connection signal="event_add_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="add_money"]
 [connection signal="event_add_suspicion" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="add_suspicion"]
@@ -128,4 +157,8 @@ stream = ExtResource("13_5iifm")
 [connection signal="event_reduce_money" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
 [connection signal="event_reduce_suspicion" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="reduce_suspicion"]
 [connection signal="event_spawn_church" from="Camera2D/Control/CanvasLayer/DailyEventNews" to="WorldMap" method="_on_daily_event_news_event_spawn_church"]
+[connection signal="player_bought_card" from="Camera2D/Control/CanvasLayer/BuyCardBtn" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="subtract_money"]
+[connection signal="player_bought_card" from="Camera2D/Control/CanvasLayer/BuyCardBtn" to="Camera2D/Control/CanvasLayer/InfluenceCardsHands" method="_on_player_buy_card"]
+[connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/SuspitionBar" method="_on_time_cycle_day_passed"]
+[connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/BloodIndicator" method="_on_time_cycle_day_passed"]
 [connection signal="day_passed" from="TimeCycle" to="Camera2D/Control/CanvasLayer/MoneyIndicator" method="_on_time_cycle_day_passed"]

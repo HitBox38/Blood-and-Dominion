@@ -1,5 +1,7 @@
 extends Label
 
+class_name Wallet
+
 @export var start_money = 10
 @export var seconds_to_money = 1.5
 @export var money_to_add = 1
@@ -7,6 +9,8 @@ extends Label
 var current_money:int = 0
 var time = 0
 var modifiers = []
+
+static var money:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +21,8 @@ func _process(delta):
 	text = str(current_money) + "$"
 	if TimeCycle.is_day:
 		add_money_timed(delta)
+	if money != current_money:
+		money = current_money
 
 func add_money_timed(delta):
 	time += delta
@@ -46,7 +52,7 @@ func _on_time_cycle_day_passed():
 
 func reduce_day_modifier_in_array(modifier: Dictionary):
 	if modifier.days > 0:
-		return { "days": modifier.days - 1, "modifier": modifier.modifier}
+		return { "days": modifier.days - 1, "modifier": modifier.modifier }
 	else:
 		pass
 
