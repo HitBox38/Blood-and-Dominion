@@ -46,6 +46,21 @@ func _process(delta):
 	else:
 		change_selected(Vector2i(1, 0))
 
+func do_need_selection():
+	need_cell_selection = true
+
+func do_select_random():
+	var all_cells = get_used_cells_by_id(1, 1, Vector2i.ZERO)
+	var rand_cell = all_cells.pick_random()
+	while get_cell_atlas_coords(2, rand_cell) != Vector2i(3, 0):
+		all_cells.erase(rand_cell)
+		rand_cell = all_cells.pick_random()
+	set_cell(2, rand_cell, 2, Vector2i.ZERO)
+	if(infected_cell_tiles.is_empty()):
+		infected_cell_tiles = { rand_cell : 1 }
+	else:
+		infected_cell_tiles[rand_cell] = 1
+
 func change_selected(selection_atlas):
 	var tile = local_to_map(get_local_mouse_position())
 	if get_cell_atlas_coords(1, tile) == Vector2i.ZERO:
@@ -93,7 +108,7 @@ func spread_infection(delta):
 				set_cell(2, tile, 2, Vector2i(3, 0))
 
 func _input(event):
-	if need_cell_selection:
+	if need_cell_selection && !DailyEvents.is_shown:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				var tile = local_to_map(get_local_mouse_position())
@@ -181,3 +196,10 @@ func remove_day_zero_modifier_in_array(modifier):
 
 func _on_daily_event_news_event_change_modifier_spread(days, modifier):
 	modifiers.append({ "days": days, "modifier": modifier })
+
+func check_for_win():
+	var all_cells = get_used_cells(1)
+	if infected_cell_tiles.size() >= all_cells.size():
+		return true
+	else:
+		return false

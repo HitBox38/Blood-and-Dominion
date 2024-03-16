@@ -1,5 +1,7 @@
 extends TextureRect
 
+class_name DailyEvents
+
 # Suspicion signals
 signal event_add_suspicion(amount:float)
 signal event_reduce_suspicion(amount:float)
@@ -27,6 +29,8 @@ var daily_events: Array = JSON.parse_string(json_as_text)
 
 var was_shown = false
 
+static var is_shown = false
+
 func _input(event):
 	if visible and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -37,6 +41,7 @@ func _process(_delta):
 		onPublish()
 	elif TimeCycle.is_day:
 		was_shown = false
+	is_shown = visible
 
 func onPublish():
 	if daily_events:

@@ -50,20 +50,20 @@ func set_card_data(card_data_obj:Dictionary):
 			var control = card_data_obj.positiveEffect.control
 			if control is float:
 				$BackGround/PositiveLabel.text += "Control +" + str(control)
-			elif control is Dictionary:
-				$BackGround/PositiveLabel.text += "Control +" + str(control.amount) + " for " + str(control.days) + " days"
+			#elif control is Dictionary:
+				#$BackGround/PositiveLabel.text += "Control +" + str(control.amount) + " for " + str(control.days) + " days"
 		if card_data_obj.positiveEffect.has("money"):
 			var money = card_data_obj.positiveEffect.money
 			if money is float:
 				$BackGround/PositiveLabel.text += "Money +" + str(money)
 			elif money is Dictionary:
-				$BackGround/PositiveLabel.text += "Money +" + str(money.amount) + " for " + str(money.days) + " days"
+				$BackGround/PositiveLabel.text += "Money *" + str(money.modifier) + " for " + str(money.days) + " days"
 		if card_data_obj.positiveEffect.has("spread"):
 			var spread = card_data_obj.positiveEffect.spread
 			if spread is float:
 				$BackGround/PositiveLabel.text += "Spread +" + str(spread)
 			elif spread is Dictionary:
-				$BackGround/PositiveLabel.text += "Spread +" + str(spread.modifier) + " for " + str(spread.days) + " days"
+				$BackGround/PositiveLabel.text += "Spread *" + str(spread.modifier) + " for " + str(spread.days) + " days"
 		if card_data_obj.positiveEffect.has("church"):
 			var church = card_data_obj.positiveEffect.church
 			if church is float:
@@ -87,20 +87,20 @@ func set_card_data(card_data_obj:Dictionary):
 			var control = card_data_obj.negativeEffect.control
 			if control is float:
 				$BackGround/NegativeLabel.text += "Control " + str(control)
-			elif control is Dictionary:
-				$BackGround/NegativeLabel.text += "Control " + str(control.amount) + " for " + str(control.days) + " days"
+			#elif control is Dictionary:
+				#$BackGround/NegativeLabel.text += "Control " + str(control.amount) + " for " + str(control.days) + " days"
 		if card_data_obj.negativeEffect.has("money"):
 			var money = card_data_obj.negativeEffect.money
 			if money is float:
 				$BackGround/NegativeLabel.text += "Money " + str(money)
 			elif money is Dictionary:
-				$BackGround/NegativeLabel.text += "Money " + str(money.amount) + " for " + str(money.days) + " days"
+				$BackGround/NegativeLabel.text += "Money *" + str(money.modifier) + " for " + str(money.days) + " days"
 		if card_data_obj.negativeEffect.has("spread"):
 			var spread = card_data_obj.negativeEffect.spread
 			if spread is float:
 				$BackGround/NegativeLabel.text += "Spread " + str(spread)
 			elif spread is Dictionary:
-				$BackGround/NegativeLabel.text += "Spread " + str(spread.amount) + " for " + str(spread.days) + " days"
+				$BackGround/NegativeLabel.text += "Spread *" + str(spread.modifier) + " for " + str(spread.days) + " days"
 		if card_data_obj.negativeEffect.has("church"):
 			var church = card_data_obj.negativeEffect.church
 			if church is float:
