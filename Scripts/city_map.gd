@@ -26,6 +26,8 @@ var church_build_time = 0.0
 var church_build_wait_time = 25.0
 var church_cell_tiles = {} # dictionary is like Vector2i pos : Vector2i[] surrounding_cells
 
+var did_win = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if TimeCycle.is_day:
@@ -39,6 +41,12 @@ func _process(delta):
 				print_debug(church_build_wait_time)
 				church_build_time = 0.0
 				build_church()
+		print_debug(check_for_win())
+		if check_for_win() and !did_win:
+			$"../WinStinger".play()
+			did_win = true
+			await get_tree().create_timer(2).timeout
+			get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")
 	
 	# changing selection cursor
 	if need_cell_selection:
@@ -119,7 +127,7 @@ func _input(event):
 					infected_cell_tiles = { tile : 1 }
 				else:
 					infected_cell_tiles[tile] = 1
-				need_cell_selection = false
+				need_cell_selection = true
 
 func build_church():
 	var possible_cells = get_used_cells(1)
@@ -175,12 +183,16 @@ func _on_daily_event_news_event_despawn_church(amount: int):
 			var size = church_cell_tiles.size()
 			var random_key = church_cell_tiles.keys()[randi() % size]
 			
-			set_cell(2, church_cell_tiles[random_key], 2, Vector2i(3, 0))
+			set_cell(2, random_key, 2, Vector2i(3, 0))
 			
 			for surr_cell in church_cell_tiles[random_key]:
 				set_cell(2, surr_cell, 2, Vector2i(3, 0))
 				
 			church_cell_tiles.erase(random_key)
+
+func check_for_win():
+	var all_cells = get_used_cells(1)
+	return infected_cell_tiles.size() >= all_cells.size() - 1
 
 func _on_time_cycle_day_passed():
 	modifiers = modifiers.map(reduce_day_modifier_in_array).filter(remove_day_zero_modifier_in_array)

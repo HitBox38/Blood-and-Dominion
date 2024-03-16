@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bi4h0dcxhnpdr"
+path="res://.godot/imported/Win (1).ogg-f87fbd94332335fde6cfc683264c4ccf.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Stingers/Win (1).ogg"
+dest_files=["res://.godot/imported/Win (1).ogg-f87fbd94332335fde6cfc683264c4ccf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

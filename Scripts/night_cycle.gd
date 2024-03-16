@@ -26,6 +26,10 @@ func _process(delta):
 	else:
 		if time >= night_time:
 			can_end_night = true
+			if $"../MusicDay".playing:
+				$"../MusicDay".stop()
+			if !$"../MusicNight".playing:
+				$"../MusicNight".play()
 
 func move_to_day():
 	if can_end_night:
@@ -33,6 +37,10 @@ func move_to_day():
 		can_end_night = false
 		next_color = Color.WHITE
 		time = 0
+		if $"../MusicNight".playing:
+			$"../MusicNight".stop()
+		if !$"../MusicDay".playing:
+			$"../MusicDay".play()
 		emit_signal("day_passed")
 
 func _on_end_turn_btn_pressed():

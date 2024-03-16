@@ -9,7 +9,11 @@ var current_blood = 1.0
 
 var time = 0
 
+
+var did_loose = false
+
 var modifiers = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,11 +33,17 @@ func add_blood_timed(delta):
 	if time >= seconds_to_blood: # then lose blood
 		decrease_blood(blood_to_lose)
 		time = 0
+	if did_loose:
+		await get_tree().create_timer(1.5).timeout
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func decrease_blood(amount: float):
 	current_blood -= abs(amount)
 	if current_blood <= 0:
 		current_blood = 0
+		if !did_loose:
+			$"../../../../LoseStinger".play()
+			did_loose = true
 
 func increase_blood(amount: float):
 	current_blood += abs(amount)
