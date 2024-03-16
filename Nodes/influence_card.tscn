@@ -19,6 +19,7 @@ layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_fyf37")
 script = ExtResource("2_0yt73")
+card_highlight_offset = Vector2(0, -250)
 
 [node name="BackGround" type="TextureRect" parent="."]
 layout_mode = 1

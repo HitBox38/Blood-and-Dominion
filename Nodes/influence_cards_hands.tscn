@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhcp1ptfxq6hb"]
 
-[ext_resource type="PackedScene" uid="uid://hdq1l7wmisc0" path="res://Nodes/influence_card.tscn" id="1_q5622"]
+[ext_resource type="Script" path="res://Nodes/influence_cards_hand.gd" id="1_i3yif"]
 
 [node name="InfluenceCardsHands" type="VBoxContainer"]
 anchors_preset = -1
@@ -14,17 +14,9 @@ offset_right = -0.0400391
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_i3yif")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="."]
 layout_mode = 2
 theme_override_constants/h_separation = 25
 alignment = 1
-
-[node name="Card" parent="HFlowContainer" instance=ExtResource("1_q5622")]
-layout_mode = 2
-
-[node name="Card2" parent="HFlowContainer" instance=ExtResource("1_q5622")]
-layout_mode = 2
-
-[node name="Card3" parent="HFlowContainer" instance=ExtResource("1_q5622")]
-layout_mode = 2

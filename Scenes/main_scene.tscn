@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
-[ext_resource type="PackedScene" uid="uid://bmymf2wru6hfv" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
-[ext_resource type="PackedScene" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
+[ext_resource type="PackedScene" path="res://Nodes/canvas_night_node.tscn" id="3_8u3od"]
+[ext_resource type="PackedScene" uid="uid://ba1tplpfjqyl8" path="res://Nodes/end_turn_btn.tscn" id="4_0hyxq"]
 [ext_resource type="Script" path="res://Scripts/ui_control.gd" id="4_j3uva"]
 [ext_resource type="PackedScene" uid="uid://b0bcpfdmif4bq" path="res://Nodes/blood_indicator.tscn" id="6_250et"]
 [ext_resource type="PackedScene" uid="uid://vji82moe1aob" path="res://Nodes/suspition_bar.tscn" id="6_u86mm"]
@@ -54,10 +54,10 @@ anchor_left = 0.042
 anchor_top = 0.908
 anchor_right = 0.252
 anchor_bottom = 0.953
-offset_left = 0.449997
-offset_top = 0.304016
-offset_right = -0.503021
-offset_bottom = 0.35498
+offset_left = 4.24
+offset_top = -77.6159
+offset_right = 3.28699
+offset_bottom = -77.5649
 theme = ExtResource("8_vsn4k")
 
 [node name="BloodIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("6_250et")]
@@ -66,10 +66,10 @@ anchor_left = 0.791
 anchor_top = 0.797
 anchor_right = 0.891
 anchor_bottom = 0.826
-offset_left = -0.619995
-offset_top = 0.0799561
-offset_right = -0.625
-offset_bottom = -0.292969
+offset_left = 3.16998
+offset_top = -77.84
+offset_right = 3.16504
+offset_bottom = -71.72
 theme = ExtResource("8_vsn4k")
 
 [node name="MoneyIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("7_l4or3")]
@@ -78,13 +78,17 @@ anchor_left = 0.771
 anchor_top = 0.895
 anchor_right = 0.909
 anchor_bottom = 0.951
-offset_left = -0.174988
-offset_top = -0.256042
-offset_right = -0.0361328
-offset_bottom = 0.166931
+offset_left = 3.61499
+offset_top = -78.176
+offset_right = 3.75391
+offset_bottom = -77.753
 theme = ExtResource("8_vsn4k")
 
 [node name="InfluenceCardsHands" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("9_gykk6")]
+offset_left = -30.88
+offset_top = -93.0
+offset_right = -31.04
+offset_bottom = 213.0
 
 [node name="DailyEventNews" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("8_oqt6m")]
 visible = false
