@@ -208,10 +208,3 @@ func remove_day_zero_modifier_in_array(modifier):
 
 func _on_daily_event_news_event_change_modifier_spread(days, modifier):
 	modifiers.append({ "days": days, "modifier": modifier })
-
-func check_for_win():
-	var all_cells = get_used_cells(1)
-	if infected_cell_tiles.size() >= all_cells.size():
-		return true
-	else:
-		return false
