@@ -2,8 +2,10 @@ extends CanvasModulate
 
 class_name TimeCycle
 
-@export var day_time = 30.0
-@export var night_time = 45.0
+signal day_passed
+
+@export var day_time: float = 45
+@export var night_time: float = 1
 
 var time:float = 0.0
 static var is_day:bool = false
@@ -31,6 +33,7 @@ func move_to_day():
 		can_end_night = false
 		next_color = Color.WHITE
 		time = 0
+		emit_signal("day_passed")
 
 func _on_end_turn_btn_pressed():
 	move_to_day()
