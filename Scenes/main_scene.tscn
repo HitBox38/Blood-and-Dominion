@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmsym24flsyge"]
+[gd_scene load_steps=16 format=3 uid="uid://cmsym24flsyge"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
@@ -10,7 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://gt6wgoaneag7" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
 [ext_resource type="PackedScene" uid="uid://dkhge2wcy77g4" path="res://Nodes/daily_event_newspaper.tscn" id="8_oqt6m"]
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="8_vsn4k"]
-[ext_resource type="PackedScene" uid="uid://bhcp1ptfxq6hb" path="res://Nodes/influence_cards_hands.tscn" id="9_gykk6"]
+[ext_resource type="PackedScene" path="res://Nodes/influence_cards_hands.tscn" id="9_gykk6"]
+[ext_resource type="AudioStream" uid="uid://bcprduuqbdw1e" path="res://Assets/Music/Loops/Song1.ogg" id="12_2tu5k"]
+[ext_resource type="AudioStream" uid="uid://b8vldxdtmvkj5" path="res://Assets/Music/Loops/NighttimeSong.ogg" id="12_oh86r"]
+[ext_resource type="AudioStream" uid="uid://bi4h0dcxhnpdr" path="res://Assets/Music/Stingers/Win (1).ogg" id="12_u6wbb"]
+[ext_resource type="AudioStream" uid="uid://ddaj4nosrauyg" path="res://Assets/Music/Stingers/Lose.ogg" id="13_5iifm"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -71,6 +75,7 @@ offset_top = 0.0799561
 offset_right = -0.625
 offset_bottom = -0.292969
 theme = ExtResource("8_vsn4k")
+start_blood = 1.0
 
 [node name="MoneyIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("7_l4or3")]
 anchors_preset = -1
@@ -87,7 +92,6 @@ theme = ExtResource("8_vsn4k")
 [node name="InfluenceCardsHands" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("9_gykk6")]
 
 [node name="DailyEventNews" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("8_oqt6m")]
-visible = false
 anchor_left = 0.204
 anchor_right = 0.808
 anchor_bottom = 0.969
@@ -99,6 +103,18 @@ offset_bottom = -0.194092
 [node name="TimeCycle" parent="." instance=ExtResource("3_8u3od")]
 color = Color(0.458824, 0.466667, 0.447059, 1)
 day_time = 5.0
+
+[node name="MusicDay" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_2tu5k")
+
+[node name="MusicNight" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_oh86r")
+
+[node name="WinStinger" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_u6wbb")
+
+[node name="LoseStinger" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_5iifm")
 
 [connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="WorldMap" method="_on_time_cycle_day_passed"]
 [connection signal="pressed" from="Camera2D/Control/CanvasLayer/EndTurnBtn" to="TimeCycle" method="_on_end_turn_btn_pressed"]

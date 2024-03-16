@@ -42,10 +42,13 @@ func _on_daily_event_news_event_change_modifier_money(days, modifier):
 	modifiers.append({"days": days, "modifier": modifier})
 
 func _on_time_cycle_day_passed():
-	modifiers = modifiers.map(reduce_day_modifier_in_array)
+	modifiers = modifiers.map(reduce_day_modifier_in_array).filter(remove_day_zero_modifier_in_array)
 
 func reduce_day_modifier_in_array(modifier: Dictionary):
 	if modifier.days > 0:
 		return { "days": modifier.days - 1, "modifier": modifier.modifier}
 	else:
 		pass
+
+func remove_day_zero_modifier_in_array(modifier):
+	return modifier != null
