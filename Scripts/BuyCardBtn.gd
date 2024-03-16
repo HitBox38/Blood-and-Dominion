@@ -8,7 +8,7 @@ var can_buy_card = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	can_buy_card = Wallet.money >= card_cost and CardsHolder.can_add_cards and !TimeCycle.is_day
+	can_buy_card = Wallet.money >= card_cost and CardsHolder.can_add_cards and CardsHolder.deck_available and !TimeCycle.is_day
 	disabled = !can_buy_card
 	visible = !TimeCycle.is_day
 	
