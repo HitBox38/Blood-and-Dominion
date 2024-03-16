@@ -35,20 +35,27 @@ var bank_cards = []
 var graveyard_cards = []
 
 static var can_add_cards:bool = false
+static var deck_available:bool = false
 
 # JSON
-@export var file_path: String = "res://data/Cards/deck.json"
+var deck: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/deck.json"))
+var market: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/market.json"))
+var residential: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/residential.json"))
+var rich: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/rich.json"))
+var slums: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/slums.json"))
 
-var json_as_text = FileAccess.get_file_as_string(file_path)
-var deck: Array = JSON.parse_string(json_as_text)
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	add_cards_to_bank()
+var district_atlas = { 
+	"slums": slums, 
+	"rich": rich,
+	"residential": residential,
+	"market": market,
+	"deck": deck
+	} # supposed to look like string district_name : bool did_discover
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	can_add_cards = player_cards.size() < 3
+	deck_available = bank_cards.size() > 0
 	for card in player_cards:
 		if card.is_card_highlighted and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			# selected this card
@@ -59,22 +66,28 @@ func _process(delta):
 
 func add_card_to_hand():
 	# if the deck is empty reset it
-	if deck.size() <= 0:
-		deck = graveyard_cards
+	if bank_cards.size() <= 0:
+		bank_cards = graveyard_cards
 		graveyard_cards = []
-		deck.shuffle()
+		bank_cards.shuffle()
 	if !can_add_cards:
 		return
 	var card_ui = card_scene.instantiate()
-	card_ui.set_card_data(deck[0])
+	card_ui.set_card_data(bank_cards[0])
 	$HFlowContainer.add_child(card_ui)
 	player_cards.append(card_ui)
-	deck.erase(deck[0])
+	bank_cards.erase(deck[0])
 
-func add_cards_to_bank():
+func add_cards_to_bank(district:String):
+	var cards_to_add = []
+	for district_key in district_atlas.keys():
+		if district == district_key:
+			cards_to_add = district_atlas[district_key]
 	if bank_cards.is_empty():
-		bank_cards = deck
-		bank_cards.shuffle()
+		bank_cards = cards_to_add
+	else:
+		bank_cards.append_array(cards_to_add)
+	bank_cards.shuffle()
 
 func card_effects(card_data_obj:Dictionary):
 	# positive effect label

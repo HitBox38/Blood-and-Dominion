@@ -15,6 +15,8 @@ extends TileMap
 
 signal cell_suspicious(amount:float)
 
+signal district_discovered(district:String)
+
 var prevTileChanged = Vector2i.MAX
 var need_cell_selection = true
 var infected_cell_tiles = {}
@@ -122,6 +124,16 @@ func _input(event):
 				var tile = local_to_map(get_local_mouse_position())
 				if get_cell_atlas_coords(1, tile) != Vector2i(2, 0):
 					return
+				var cell_source_id = get_cell_source_id(0, tile)
+				
+				match(cell_source_id):
+					7:
+						emit_signal("district_discovered", "slums")
+					6:
+						emit_signal("district_discovered", "rich")
+					5:
+						emit_signal("district_discovered", "residential")
+				
 				set_cell(2, tile, 2, Vector2i.ZERO)
 				if(infected_cell_tiles.is_empty()):
 					infected_cell_tiles = { tile : 1 }
