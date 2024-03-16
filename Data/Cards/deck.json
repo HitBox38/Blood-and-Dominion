@@ -1,38 +1,38 @@
 [
   {
-    "name": "Feed",
-    "positiveEffect": {
-      "blood": 10
-    },
-    "ngativeEffect": {
-      "suspicion": 10
-    },
-    "flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
-    "source": "deck"
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
   },
   {
-    "name": "Elevate a believer",
-    "positiveEffect": {
-      "spread": {
-        "days": 3,
-        "modifier": 1.5
-      }
-    },
-    "ngativeEffect": {
-      "blood": -10
-    },
-    "flavourText": "“I give you my blood to elevate a worthy man to more than just a man. Lead them!”",
-    "source": "deck"
+	"name": "Elevate a believer",
+	"positiveEffect": {
+	  "spread": {
+		"days": 3,
+		"modifier": 1.5
+	  }
+	},
+	"negativeEffect": {
+	  "blood": -10
+	},
+	"flavourText": "“I give you my blood to elevate a worthy man to more than just a man. Lead them!”",
+	"source": "deck"
   },
   {
-    "name": "Ghoul Beasts",
-    "positiveEffect": {
-      "control": 1
-    },
-    "ngativeEffect": {
-      "blood": -10
-    },
-    "flavourText": "“With a bit of blood any animal will obey and spread my influence.”",
-    "source": "deck"
+	"name": "Ghoul Beasts",
+	"positiveEffect": {
+	  "control": 1
+	},
+	"negativeEffect": {
+	  "blood": -10
+	},
+	"flavourText": "“With a bit of blood any animal will obey and spread my influence.”",
+	"source": "deck"
   }
 ]
