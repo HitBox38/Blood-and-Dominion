@@ -51,6 +51,7 @@ func _process(delta):
 		if card.is_card_highlighted and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			# selected this card
 			graveyard_cards.append(card)
+			card_effects(card.card_obj)
 			player_cards.erase(card)
 			card.queue_free()
 			
