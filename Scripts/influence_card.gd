@@ -1,29 +1,33 @@
 extends Control
 
-signal on_select_card(card)
+signal on_select_card(card:Dictionary)
 
-@export var card_highlight_offset = Vector2(0, 25)
+@export var card_highlight_offset = Vector2(0, -50)
 
 var is_card_highlighted = false
-var card_start_position = Vector2.ZERO
+var card_next_position = null
+var card_first_position = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	card_start_position = position
+var card_obj = {}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if TimeCycle.is_day:
+		visible = false
+	else:
+		visible = true
+	if card_next_position != null:
+		position = lerp(position, card_next_position, delta)
 	if is_card_highlighted:
 		# highlight card
-		position = lerp(position, card_start_position + card_highlight_offset, delta)
+		# card selection
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			# use card if possible
-			print_debug("USED CARD")
-	else:
-		# un highlight card
-		position = lerp(position, card_start_position, delta)
+			emit_signal("on_select_card", card_obj)
+			# and remove the card from hand
 
 func set_card_data(card_data_obj:Dictionary):
+	card_obj = card_data_obj
 	# title label
 	if card_data_obj.has("name"):
 		$BackGround/TitleLabel.text = card_data_obj.name
@@ -107,6 +111,10 @@ func set_card_data(card_data_obj:Dictionary):
 
 func _on_mouse_entered():
 	is_card_highlighted = true
+	if card_first_position == null:
+		card_first_position = position
+	card_next_position = card_first_position + card_highlight_offset
 
 func _on_mouse_exited():
 	is_card_highlighted = false
+	card_next_position = card_first_position

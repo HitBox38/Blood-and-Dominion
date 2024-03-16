@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_1pgoi"]
 [ext_resource type="Texture2D" uid="uid://ba0icx0gorpmt" path="res://Assets/Art/Newspaper/newspaper_2_happy.png" id="1_ba8ll"]
-[ext_resource type="Script" path="res://Scripts/daily_event.gd" id="2_evrap"]
+[ext_resource type="Script" path="res://Scripts/daily_event.gd" id="3_xx0hf"]
 
 [sub_resource type="Theme" id="Theme_po2fm"]
 
@@ -19,7 +19,7 @@ offset_bottom = -0.240051
 theme = ExtResource("1_1pgoi")
 texture = ExtResource("1_ba8ll")
 stretch_mode = 4
-script = ExtResource("2_evrap")
+script = ExtResource("3_xx0hf")
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1

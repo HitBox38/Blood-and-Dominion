@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmsym24flsyge"]
+[gd_scene load_steps=12 format=3 uid="uid://cmsym24flsyge"]
 
 [ext_resource type="PackedScene" uid="uid://bms2rbjike78j" path="res://Nodes/city_map_node.tscn" id="1_1n2f3"]
 [ext_resource type="PackedScene" uid="uid://xh4mko155k85" path="res://Nodes/camera_2d.tscn" id="2_xkvao"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://Nodes/money_indicator.tscn" id="7_l4or3"]
 [ext_resource type="PackedScene" uid="uid://dkhge2wcy77g4" path="res://Nodes/daily_event_newspaper.tscn" id="8_oqt6m"]
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="8_vsn4k"]
+[ext_resource type="PackedScene" uid="uid://bhcp1ptfxq6hb" path="res://Nodes/influence_cards_hands.tscn" id="9_gykk6"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -81,6 +82,8 @@ offset_top = -0.256042
 offset_right = -0.0361328
 offset_bottom = 0.166931
 theme = ExtResource("8_vsn4k")
+
+[node name="InfluenceCardsHands" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("9_gykk6")]
 
 [node name="DailyEventNews" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("8_oqt6m")]
 visible = false
