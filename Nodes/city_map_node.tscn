@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cfjto412sr6y6" path="res://Assets/Art/Tiles/church.png" id="5_j3q48"]
 [ext_resource type="Script" path="res://Scripts/city_map.gd" id="5_q47h1"]
 [ext_resource type="Texture2D" uid="uid://fh0oaci0ta1" path="res://Assets/Art/Tiles/middle_tilesheets.png" id="6_3m35w"]
-[ext_resource type="Texture2D" uid="uid://b2rtxax517786" path="res://Assets/Art/Tiles/rich_tilesheet.png" id="7_n27l5"]
+[ext_resource type="Texture2D" uid="uid://cydagb6esb0i0" path="res://Assets/Art/Tiles/rich_tilesheet.png" id="7_n27l5"]
 [ext_resource type="Texture2D" uid="uid://cbbnmb3agfplg" path="res://Assets/Art/Tiles/outside.png" id="8_vvy8b"]
-[ext_resource type="Texture2D" uid="uid://dyxpgyx273qag" path="res://Assets/Art/Tiles/slums_tilesheet.png" id="9_4ijk3"]
+[ext_resource type="Texture2D" uid="uid://lap2cbybuvhd" path="res://Assets/Art/Tiles/slums_tilesheet.png" id="9_4ijk3"]
 [ext_resource type="Texture2D" uid="uid://cwjn0gdibh71s" path="res://Assets/Art/Tiles/market_tilesheet.png" id="10_jv5cg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bsqxv"]

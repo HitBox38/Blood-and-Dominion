@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpqosqc5xtrlg"]
+[gd_scene load_steps=5 format=3 uid="uid://c7f02n57mnhhm"]
 
 [ext_resource type="AudioStream" uid="uid://dunukgchqp8mm" path="res://Assets/Music/Loops/Song2.ogg" id="1_aqams"]
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="2_dku7s"]
 [ext_resource type="Script" path="res://Scripts/MainMenuUI.gd" id="3_uoc0x"]
-[ext_resource type="PackedScene" uid="uid://dkaaama2x6ise" path="res://Nodes/tutorial_menu.tscn" id="4_4y05w"]
+[ext_resource type="PackedScene" path="res://Nodes/tutorial_menu.tscn" id="4_4y05w"]
 
 [node name="MainMenu" type="Node2D"]
 
