@@ -52,6 +52,9 @@ var district_atlas = {
 	"deck": deck
 	} # supposed to look like string district_name : bool did_discover
 
+func _ready():
+	add_cards_to_bank("deck")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	can_add_cards = player_cards.size() < 3

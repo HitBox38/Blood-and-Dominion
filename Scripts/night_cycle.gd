@@ -5,13 +5,13 @@ class_name TimeCycle
 signal day_passed
 
 @export var day_time: float = 45
-@export var night_time: float = 1
+#@export var night_time: float = 1
 
 var time:float = 0.0
 static var is_day:bool = false
 static var can_end_night:bool = false
 
-var next_color = Color.DIM_GRAY
+var next_color = Color.GRAY
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,15 +21,14 @@ func _process(delta):
 		if time >= day_time:
 			# day time over move to night
 			is_day = false
-			next_color = Color.DIM_GRAY
+			next_color = Color.GRAY
 			time = 0
 	else:
-		if time >= night_time:
-			can_end_night = true
-			if $"../MusicDay".playing:
-				$"../MusicDay".stop()
-			if !$"../MusicNight".playing:
-				$"../MusicNight".play()
+		can_end_night = true
+		if $"../MusicDay".playing:
+			$"../MusicDay".stop()
+		if !$"../MusicNight".playing:
+			$"../MusicNight".play()
 
 func move_to_day():
 	if can_end_night:
