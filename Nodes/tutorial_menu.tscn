@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkaaama2x6ise"]
+
+[ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_evg63"]
+
+[node name="TutorialMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_evg63")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 1278.0
+offset_bottom = 717.0
+text = "lots of text to fill up the tutorial with example imagesv"

@@ -1,9 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7f02n57mnhhm"]
+[gd_scene load_steps=5 format=3 uid="uid://cpqosqc5xtrlg"]
 
 [ext_resource type="AudioStream" uid="uid://dunukgchqp8mm" path="res://Assets/Music/Loops/Song2.ogg" id="1_aqams"]
+[ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="2_dku7s"]
+[ext_resource type="Script" path="res://Scripts/MainMenuUI.gd" id="3_uoc0x"]
+[ext_resource type="PackedScene" uid="uid://dkaaama2x6ise" path="res://Nodes/tutorial_menu.tscn" id="4_4y05w"]
 
 [node name="MainMenu" type="Node2D"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_aqams")
 autoplay = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("2_dku7s")
+script = ExtResource("3_uoc0x")
+
+[node name="StartGameButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 223.0
+offset_right = 886.0
+offset_bottom = 330.0
+text = "Start"
+
+[node name="TutorialMenuButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 449.0
+offset_right = 825.0
+offset_bottom = 561.0
+text = "Tutorial Menu"
+
+[node name="TutorialMenu" parent="Control" instance=ExtResource("4_4y05w")]
+visible = false
+layout_mode = 1
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 1281.0
+offset_bottom = 721.0
+
+[node name="ReturnButton" type="Button" parent="Control/TutorialMenu"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 657.0
+offset_right = 707.0
+offset_bottom = 692.0
+text = "Return"
+
+[connection signal="pressed" from="Control/StartGameButton" to="Control" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Control/TutorialMenuButton" to="Control" method="_on_tutorial_menu_button_pressed"]
+[connection signal="pressed" from="Control/TutorialMenu/ReturnButton" to="Control" method="_on_return_button_pressed"]
