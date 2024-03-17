@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkaaama2x6ise"]
+[gd_scene load_steps=2 format=3 uid="uid://crowd7w5gwt2w"]
 
 [ext_resource type="Theme" uid="uid://bd0i6rk0q5q73" path="res://Assets/Theme/default_theme.tres" id="1_evg63"]
 
@@ -15,4 +15,28 @@ theme = ExtResource("1_evg63")
 layout_mode = 0
 offset_right = 1278.0
 offset_bottom = 717.0
-text = "lots of text to fill up the tutorial with example imagesv"
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 26
+bbcode_enabled = true
+text = "Greeting Player 
+Here you play as an ancient  vampire leading a cult in attempt to take over the city of [b]Respira[/b]
+
+* Choose starting position to begin infecting the city.
+
+* Your [b]blood[/b] represents your health, if it runs out you die a true death (game over).
+
+* Your [b]money[/b] represents the cash your cult has at hand for you to manipulate. Your cult members are working hard to deliver this money to you.
+
+* You can spend your money to draw [b]Influence Cards[/b].
+
+* Each [b]Influence Cards[/b] has a benefit and a cost.
+
+* You may hold up to three influence cards in your hand.
+
+* The Suspicion bar represents how suspicious are the people of the city of you, the more suspicious they are the more churches(pic) they build that hinder your progress.
+
+* In this version you can not go over district borders without using your vampiric abilities .
+
+* Each district gives different influence cards when infected.
+"
+scroll_active = false

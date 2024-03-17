@@ -41,7 +41,7 @@ func add_money(amount:int):
 		current_money = 10
 
 func subtract_money(amount:int):
-	current_money -= amount
+	current_money -= abs(amount)
 	if current_money <= 0:
 		current_money = 0
 

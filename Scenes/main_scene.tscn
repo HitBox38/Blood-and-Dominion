@@ -89,7 +89,7 @@ theme_override_colors/font_shadow_color = Color(0.427451, 0.427451, 0.427451, 1)
 theme_override_colors/font_outline_color = Color(0.427451, 0.427451, 0.427451, 1)
 horizontal_alignment = 2
 start_blood = 20.0
-blood_to_lose = 0.05
+blood_to_lose = 0.75
 
 [node name="MoneyIndicator" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("7_l4or3")]
 anchors_preset = -1

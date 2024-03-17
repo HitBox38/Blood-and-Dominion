@@ -20,6 +20,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	text = str(current_blood).pad_decimals(2) + " lt."
+	if did_loose:
+		await get_tree().create_timer(2).timeout
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	if TimeCycle.is_day:
 		add_blood_timed(delta)
 
@@ -29,8 +32,7 @@ func add_blood_timed(delta):
 	if time >= seconds_to_blood: # then lose blood
 		decrease_blood(blood_to_lose)
 		time = 0
-	if did_loose:
-		emit_signal("blood_loss")
+	
 
 func decrease_blood(amount: float):
 	current_blood -= abs(amount)
@@ -42,8 +44,7 @@ func decrease_blood(amount: float):
 				$"../../../../MusicDay".stop()
 			if $"../../../../MusicNight".playing:
 				$"../../../../MusicNight".stop()
-			await get_tree().create_timer(2).timeout
-			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+			did_loose = true
 
 func increase_blood(amount: float):
 	current_blood += abs(amount)

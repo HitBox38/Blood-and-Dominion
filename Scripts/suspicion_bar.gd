@@ -11,7 +11,7 @@ var modifiers = []
 static var player_suspicion = 0.0
 
 func _process(delta):
-	if value < current_suspicion:
+	if value != current_suspicion:
 		value = lerpf(value, current_suspicion, delta)
 	if player_suspicion != current_suspicion:
 		player_suspicion = current_suspicion
@@ -24,6 +24,7 @@ func add_suspicion(amount:float):
 		pass
 
 func reduce_suspicion(amount:float):
+	print_debug(amount < 0, abs(amount))
 	current_suspicion -= abs(amount)
 	if current_suspicion <= 0:
 		current_suspicion = 0
