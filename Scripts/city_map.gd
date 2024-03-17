@@ -40,15 +40,18 @@ func _process(delta):
 			church_build_wait_time = church_build_max_time - (Suspicion.player_suspicion / 100) * (church_build_max_time - church_build_min_time)
 			church_build_time += delta
 			if church_build_time >= church_build_wait_time:
-				print_debug(church_build_wait_time)
 				church_build_time = 0.0
 				build_church()
-		print_debug(check_for_win())
+		
 		if check_for_win() and !did_win:
-			$"../WinStinger".play()
+			$"../Camera2D/Control/WinStinger".play()
+			if $"../Camera2D/Control/MusicDay".playing:
+				$"../Camera2D/Control/MusicDay".stop()
+			if $"../Camera2D/Control/MusicNight".playing:
+				$"../Camera2D/Control/MusicNight".stop()
 			did_win = true
 			await get_tree().create_timer(2).timeout
-			get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")
+			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	
 	# changing selection cursor
 	if need_cell_selection:
@@ -84,7 +87,6 @@ func spread_infection(delta):
 	var modified_ifection_max_time = infection_max_time
 	for mod in modifiers:
 		modified_ifection_max_time = modified_ifection_max_time / mod.modifier
-	print_debug(modified_ifection_max_time)
 	if infection_time > modified_ifection_max_time:
 		infection_time = 0
 		for i in range(infected_cell_tiles.size()):
@@ -127,7 +129,7 @@ func _input(event):
 				var cell_source_id = get_cell_source_id(0, tile)
 				
 				match(cell_source_id):
-					7:
+					8:
 						emit_signal("district_discovered", "slums")
 					6:
 						emit_signal("district_discovered", "rich")

@@ -38,11 +38,218 @@ static var can_add_cards:bool = false
 static var deck_available:bool = false
 
 # JSON
-var deck: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/deck.json"))
-var market: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/market.json"))
-var residential: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/residential.json"))
-var rich: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/rich.json"))
-var slums: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/Cards/slums.json"))
+@export var deck: Array = [{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },
+  {
+	"name": "Elevate a believer",
+	"positiveEffect": {
+	  "spread": {
+		"days": 3,
+		"modifier": 1.5
+	  }
+	},
+	"negativeEffect": {
+	  "blood": -10
+	},
+	"flavourText": "“I give you my blood to elevate a worthy man to more than just a man. Lead them!”",
+	"source": "deck"
+  },
+  {
+	"name": "Ghoul Beasts",
+	"positiveEffect": {
+	  "control": 1
+	},
+	"negativeEffect": {
+	  "blood": -10
+	},
+	"flavourText": "“With a bit of blood any animal will obey and spread my influence.”",
+	"source": "deck"
+  }]
+@export var market: Array = [{
+	"name": "Panacea distribution",
+	"positiveEffect": {
+	  "money": 20
+	},
+	"negativeEffect": {
+	  "blood": -20
+	},
+	"flavourText": "“What if we actually do what we claim to do”",
+	"source": "market"
+  },
+  {
+	"name": "Blood donations",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "money": -15
+	},
+	"flavourText": "“We can alway pay them for it”",
+	"source": "market"
+  },
+  {
+	"name": "Healing centre",
+	"positiveEffect": {
+	  "money": {
+		"days": 3,
+		"modifier": 1.5
+	  }
+	},
+	"negativeEffect": {
+	  "suspicion": 10,
+	  "blood": -10
+	},
+	"flavourText": "“For a small payment we can heal any injury”",
+	"source": "market"
+  }]
+@export var residential: Array = [{
+	"name": "Blend in",
+	"positiveEffect": {
+	  "suspicion": -10
+	},
+	"negativeEffect": {
+	  "spread": {
+		"days": 3,
+		"modifier": 0.25
+	  }
+	},
+	"flavourText": "“No one suspects a family with kids”",
+	"source": "residential"
+  },
+  {
+	"name": "Defy the faith",
+	"positiveEffect": {
+	  "church": -1
+	},
+	"negativeEffect": {
+	  "suspicion": 10,
+	  "blood": -10
+	},
+	"flavourText": "“Join me and break the chains of your would be masters”",
+	"source": "residential"
+  },
+  {
+	"name": "Business investment",
+	"positiveEffect": {
+	  "blood": {
+		"days": 3,
+		"amount": 5
+	  }
+	},
+	"negativeEffect": {
+	  "money": {
+		"days": 3,
+		"modifier": 0.25
+	  }
+	},
+	"flavourText": "“We can loan them the money but the interest will be paid in blood”",
+	"source": "residential"
+  }]
+@export var rich: Array = [{
+	"name": "Corrupt statesmen",
+	"positiveEffect": {
+	  "church": -1
+	},
+	"negativeEffect": {
+	  "blood": -10,
+	  "money": -15
+	},
+	"flavourText": "“Its funny how easy they turn on each other when you pay them to do so”",
+	"source": "rich"
+  },
+  {
+	"name": "News campaign",
+	"positiveEffect": {
+	  "suspicion": -10
+	},
+	"negativeEffect": {
+	  "blood": -10,
+	  "money": -15
+	},
+	"flavourText": "“Write it down. I want it to be on the front page.”",
+	"source": "rich"
+  },
+  {
+	"name": "Taxation",
+	"positiveEffect": {
+	  "money": 20
+	},
+	"negativeEffect": {
+	  "suspicion": 10,
+	  "blood": -10
+	},
+	"flavourText": "“The best kind of theft. The legal kind”",
+	"source": "rich"
+  }]
+@export var slums: Array = [{
+	"name": "Scare the opposition",
+	"positiveEffect": {
+	  "suspicion": -10
+	},
+	"negativeEffect": {
+	  "blood": -20
+	},
+	"flavourText": "“Go on… tell them. Who will ever believe you?”",
+	"source": "slums"
+  },
+  {
+	"name": "Cull the unworthy",
+	"positiveEffect": {
+	  "blood": 20
+	},
+	"negativeEffect": {
+	  "control": -1,
+	  "suspicion": 10
+	},
+	"flavourText": "“Those unworthy of the blood will be drained of theirs”",
+	"source": "slums"
+  },
+  {
+	"name": "Speakeasy",
+	"positiveEffect": {
+	  "suspicion": {
+		"days": 3,
+		"amount": -10
+	  }
+	},
+	"negativeEffect": {
+	  "blood": {
+		"days": 3,
+		"amount": -10
+	  }
+	},
+	"flavourText": "“Make it a really nice place. Entry with Invitations only”",
+	"source": "slums"
+  }]
 
 var district_atlas = { 
 	"slums": slums, 
