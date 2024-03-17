@@ -29,7 +29,9 @@ var church_build_wait_time = 25.0
 var church_cell_tiles = {} # dictionary is like Vector2i pos : Vector2i[] surrounding_cells
 
 var did_win = false
-
+func _ready():
+	build_church()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if TimeCycle.is_day:
@@ -99,6 +101,7 @@ func spread_infection(delta):
 				for l in range(surr_cells.size()):
 					var cell = surr_cells[l]
 					if !is_cell_viable_for_infection(cell):
+						# check if 
 						continue
 					randomize()
 					#if randi_range(0, 100) / 100 <= infection_suspicion_chance: # if we didnt reach out of the chances
@@ -179,19 +182,37 @@ func get_surrounding_cells_by_radius(church_cell):
 				surr_cells.append(surr_cell_pos)
 	return surr_cells
 
+func check_church_surrounding_cells_infection(cell):
+	var check_radius = Vector2(-church_ward_radius - 1, church_ward_radius + 2)
+	var is_surrounded = true
+	for x_offset in range(check_radius.x, check_radius.y):
+		for y_offset in range(check_radius.x, check_radius.y):
+			# Skip the center cell
+			if !(x_offset == check_radius.x or x_offset == check_radius.y or y_offset == check_radius.x or y_offset == check_radius.y):
+				continue
+			var surr_cell_pos = cell + Vector2i(x_offset, y_offset)
+			for church_effected_cells in church_cell_tiles.values():
+				if church_effected_cells.has(cell):
+					is_surrounded = true
+	return is_surrounded
+
 func is_cell_viable_for_church(cell_pos):
 	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.keys().has(cell_pos))
+	for church_effected_cells in church_cell_tiles.values():
+		if church_effected_cells.has(cell_pos):
+			is_viable = false
 	return is_viable
 	
 func is_cell_viable_for_infection(cell_pos):
-	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.values().has(cell_pos))
+	var is_viable:bool = !(get_cell_source_id(1, cell_pos) == -1 or church_cell_tiles.keys().has(cell_pos))
+	for church_effected_cells in church_cell_tiles.values():
+		if church_effected_cells.has(cell_pos):
+			is_viable = false
 	return is_viable
-
 
 func _on_daily_event_news_event_spawn_church(amount: int):
 	for i in range(0, amount):
 		build_church()
-
 
 func _on_daily_event_news_event_despawn_church(amount: int):
 	if !church_cell_tiles.is_empty():

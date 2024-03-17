@@ -13,6 +13,9 @@ static var can_end_night:bool = false
 
 var next_color = Color.GRAY
 
+func _ready():
+	is_day = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
