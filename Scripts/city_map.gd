@@ -29,11 +29,17 @@ var church_build_wait_time = 25.0
 var church_cell_tiles = {} # dictionary is like Vector2i pos : Vector2i[] surrounding_cells
 
 var did_win = false
-func _ready():
-	build_church()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	for church_cell in church_cell_tiles.keys():
+		if check_church_surrounding_cells_infection(church_cell):
+			# break church
+			set_cell(2, church_cell, 2, Vector2i(3, 0))
+			for surr_cell in church_cell_tiles[church_cell]:
+				set_cell(2, surr_cell, 2, Vector2i(3, 0))
+			church_cell_tiles.erase(church_cell)
+	
 	if TimeCycle.is_day:
 		spread_infection(delta)
 		# if reached certain suspicion then start building churches based on timer
@@ -182,7 +188,7 @@ func get_surrounding_cells_by_radius(church_cell):
 				surr_cells.append(surr_cell_pos)
 	return surr_cells
 
-func check_church_surrounding_cells_infection(cell):
+func check_church_surrounding_cells_infection(church_cell):
 	var check_radius = Vector2(-church_ward_radius - 1, church_ward_radius + 2)
 	var is_surrounded = true
 	for x_offset in range(check_radius.x, check_radius.y):
@@ -190,10 +196,9 @@ func check_church_surrounding_cells_infection(cell):
 			# Skip the center cell
 			if !(x_offset == check_radius.x or x_offset == check_radius.y or y_offset == check_radius.x or y_offset == check_radius.y):
 				continue
-			var surr_cell_pos = cell + Vector2i(x_offset, y_offset)
-			for church_effected_cells in church_cell_tiles.values():
-				if church_effected_cells.has(cell):
-					is_surrounded = true
+			var surr_cell_pos = church_cell + Vector2i(x_offset, y_offset)
+			if !infected_cell_tiles.keys().has(surr_cell_pos):
+				is_surrounded = false
 	return is_surrounded
 
 func is_cell_viable_for_church(cell_pos):
