@@ -30,8 +30,7 @@ func add_blood_timed(delta):
 		decrease_blood(blood_to_lose)
 		time = 0
 	if did_loose:
-		await get_tree().create_timer(2).timeout
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		emit_signal("blood_loss")
 
 func decrease_blood(amount: float):
 	current_blood -= abs(amount)
@@ -43,7 +42,8 @@ func decrease_blood(amount: float):
 				$"../../../../MusicDay".stop()
 			if $"../../../../MusicNight".playing:
 				$"../../../../MusicNight".stop()
-			did_loose = true
+			await get_tree().create_timer(2).timeout
+			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func increase_blood(amount: float):
 	current_blood += abs(amount)
@@ -55,7 +55,7 @@ func _on_time_cycle_day_passed():
 	for mod in modifiers:
 		if mod.modifier > 0:
 			increase_blood(mod.modifier)
-		elif mod.modifiers < 0:
+		elif mod.modifier < 0:
 			decrease_blood(mod.modifier)
 
 func _on_card_change_modifier_blood(days, modifier):

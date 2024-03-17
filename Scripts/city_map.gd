@@ -129,13 +129,15 @@ func _input(event):
 				var cell_source_id = get_cell_source_id(0, tile)
 				
 				match(cell_source_id):
+					9:
+						emit_signal("district_discovered", "market")
 					8:
 						emit_signal("district_discovered", "slums")
 					6:
 						emit_signal("district_discovered", "rich")
 					5:
 						emit_signal("district_discovered", "residential")
-				
+					
 				set_cell(2, tile, 2, Vector2i.ZERO)
 				if(infected_cell_tiles.is_empty()):
 					infected_cell_tiles = { tile : 1 }

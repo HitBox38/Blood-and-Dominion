@@ -36,7 +36,7 @@ func _on_time_cycle_day_passed():
 	for mod in modifiers:
 		if mod.modifier > 0:
 			add_suspicion(mod.modifier)
-		elif mod.modifiers < 0:
+		elif mod.modifier < 0:
 			reduce_suspicion(mod.modifier)
 
 func _on_card_change_modifier_suspicion(days, modifier):

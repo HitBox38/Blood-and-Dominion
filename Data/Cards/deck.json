@@ -10,6 +10,39 @@
 	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
 	"source": "deck"
   },
+{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },
+{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },
+{
+	"name": "Feed",
+	"positiveEffect": {
+	  "blood": 10
+	},
+	"negativeEffect": {
+	  "suspicion": 10
+	},
+	"flavourText": "“Is the wolf evil for killing the rabbit when the opportunity presents itself? I think not!”",
+	"source": "deck"
+  },
   {
 	"name": "Elevate a believer",
 	"positiveEffect": {

@@ -20,6 +20,15 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[importer_defaults]
+
+oggvorbisstr={
+"loop": true
+}
+mp3={
+"loop": true
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

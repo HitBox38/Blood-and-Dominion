@@ -31,6 +31,7 @@ func add_money_timed(delta):
 		var money_after_modifier: int = money_to_add
 		for mod in modifiers:
 			money_after_modifier *= mod.modifier
+		print_debug(money_to_add, money_after_modifier)
 		add_money(money_after_modifier)
 		time = 0
 
