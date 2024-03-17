@@ -21,7 +21,6 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(1145, 344)
 scale = Vector2(2.07948, 1.63067)
 texture = ExtResource("1_t1gkp")
@@ -46,7 +45,6 @@ grow_vertical = 2
 theme = ExtResource("8_vsn4k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D/Control"]
-visible = false
 script = ExtResource("4_j3uva")
 
 [node name="EndTurnBtn" parent="Camera2D/Control/CanvasLayer" instance=ExtResource("4_0hyxq")]
